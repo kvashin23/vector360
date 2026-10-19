@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Собирает vector360-prototype.html: подставляет картинки и видео из assets/ в template.html как base64.
+# Собирает index.html: подставляет картинки и видео из assets/ в template.html как base64.
 set -e
 cd "$(dirname "$0")"
-out=../vector360-prototype.html
+out=../index.html
 {
   sed -n '1,/^__ASSETS__$/p' template.html | sed '$d'
   printf 'const IMG={'
