@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вектор 360</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF1F0;--paper:#fff;--ink:#22302B;--soft:#5A6863;--line:#D3DAD7;--dark:#2F3B36;--accent:#6E8B74;--accent-ink:#fff;--hl:#C9A45C;--r:18px;
+  --display:"Manrope","Segoe UI",Arial,sans-serif;--text:"Golos Text","Segoe UI",Arial,sans-serif}
+body[data-theme="karluu"]{--bg:#E7EAF0;--ink:#16233F;--soft:#55607A;--line:#CCD2DE;--dark:#1F3466;--accent:#1F3466;--hl:#8EA0C2}
+body[data-theme="rizalta"]{--bg:#F7F1E6;--ink:#253622;--soft:#5D6550;--line:#E2D7C3;--dark:#28391F;--accent:#A57C2E;--hl:#C79A3C}
+body[data-theme="mariupol"]{--bg:#EEF3F6;--ink:#1B2C3A;--soft:#526472;--line:#CFDBE3;--dark:#1E4A66;--accent:#E0A526;--accent-ink:#1B2C3A;--hl:#E0A526}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--text)}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.12;letter-spacing:-.01em}
+h2{font-size:clamp(28px,3.4vw,44px);font-weight:600}
+h3{font-size:19px;font-weight:600}
+p{margin:0}
+:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:88px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head p{max-width:520px;color:var(--soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;font:600 16px/1.2 var(--text);padding:16px 26px;border-radius:999px;border:0;cursor:pointer;text-decoration:none}
+.btn-main{background:var(--accent);color:var(--accent-ink)}
+.btn-main:hover{filter:brightness(1.08)}
+.btn-line{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.fish{display:inline-block;font:500 12px/1.4 var(--text);background:#FFF3D1;color:#7A5410;border-radius:4px;padding:1px 7px;vertical-align:middle;margin-left:6px}
+.proto{background:#FFF3D1;color:#5E4310;font-size:14px;text-align:center;padding:8px 16px}
+.proto a{margin:0 6px;font-weight:600}
+.proto a[aria-current="page"]{text-decoration:none;border-bottom:2px solid currentColor}
+
+/* header */
+.header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.header .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;white-space:nowrap}
+.brand b{font:700 17px/1 var(--display)}
+.brand small{display:block;font-size:12px;color:var(--soft);margin-top:3px}
+.brand svg{width:30px;height:30px}
+.nav{display:flex;gap:22px;margin-left:auto}
+.nav a{text-decoration:none;font-size:15px;color:var(--soft);white-space:nowrap}
+.nav a:hover{color:var(--ink)}
+.phone{font-weight:600;text-decoration:none;white-space:nowrap}
+.header .btn{padding:11px 18px;font-size:14px;white-space:nowrap}
+@media (max-width:1100px){.nav{display:none}.phone{margin-left:auto}}
+@media (max-width:640px){.phone{display:none}.header .btn{margin-left:auto}.brand small{display:none}}
+
+/* hero */
+.hero{position:relative;color:#fff;background:var(--dark);overflow:hidden}
+.hero-media{position:absolute;inset:0}
+.hero-media img,.hero-media svg{width:100%;height:100%;object-fit:cover}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,20,18,.82) 0%,rgba(15,20,18,.55) 48%,rgba(15,20,18,.1) 100%)}
+.hero .wrap{position:relative;min-height:640px;display:flex;flex-direction:column;justify-content:center;padding-top:64px;padding-bottom:64px}
+.eyebrow{font-size:15px;opacity:.9;margin-bottom:16px}
+.hero h1{font-size:clamp(40px,6vw,84px);font-weight:300;letter-spacing:-.02em;max-width:820px}
+.hero .lede{font-size:19px;max-width:600px;margin-top:20px;opacity:.95}
+.hero .price{margin-top:28px;font:600 clamp(24px,2.6vw,32px)/1.2 var(--display)}
+.hero .price span{display:block;font:400 14px/1.4 var(--text);opacity:.8;margin-bottom:4px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;max-width:860px;border-top:1px solid rgba(255,255,255,.35)}
+.kpis div{padding:18px 24px 0 0}
+.kpis strong{display:block;font:600 clamp(26px,3vw,38px)/1.1 var(--display)}
+.kpis span{font-size:14px;opacity:.85}
+.src-note{font-size:12px;opacity:.7;margin-top:14px}
+@media (max-width:700px){.kpis{grid-template-columns:1fr}.hero .wrap{min-height:0}}
+
+/* generic cards */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media (max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+.card h3{margin-bottom:10px}
+.card p{color:var(--soft);font-size:16px}
+.who{border-top:2px solid var(--accent);padding-top:18px}
+.who p{font:400 20px/1.35 var(--display)}
+
+/* invest */
+.calc-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.calc-card .top{background:var(--dark);color:#fff;padding:26px 28px}
+.calc-card .top span{font-size:14px;opacity:.85}
+.calc-card .top strong{display:block;font:600 34px/1.1 var(--display);margin-top:6px}
+.calc-card .top em{display:block;font-style:normal;font-size:14px;opacity:.8;margin-top:6px}
+.rows{padding:8px 28px 24px}
+.rows div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.rows div:last-child{border-bottom:0}
+.rows span{color:var(--soft)}
+.rows b{text-align:right}
+.rows .big b{font:700 22px/1.2 var(--display);color:var(--accent)}
+body[data-theme="kedry"] .rows .big b{color:var(--dark)}
+.disc{font-size:13px;color:var(--soft);margin-top:18px;max-width:900px}
+.bars{display:flex;align-items:flex-end;gap:12px;height:240px;margin-top:8px}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%;font-size:13px;text-align:center}
+.bar i{display:block;width:100%;background:var(--hl);border-radius:6px 6px 0 0}
+.bar.last i{background:var(--accent)}
+.bar b{font-size:13px}
+.table-wrap{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{text-align:left;padding:16px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--soft);font-size:14px}
+tr:last-child td{border-bottom:0}
+
+/* terms */
+.terms{background:var(--dark);color:#fff;border-radius:var(--r);padding:36px 40px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.terms h2{font-size:clamp(24px,2.6vw,34px);margin-bottom:10px}
+.terms p{opacity:.9;max-width:640px}
+.offer{margin-top:22px;border:2px solid var(--hl);border-radius:var(--r);padding:26px 30px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap;background:var(--paper)}
+.offer .tag{display:inline-block;background:var(--hl);color:#1d1d1d;font-weight:600;font-size:13px;padding:5px 12px;border-radius:999px;margin-bottom:10px}
+.offer p{color:var(--soft)}
+
+/* mortgage */
+.dark-sec{background:var(--dark);color:#fff}
+.dark-sec .head p{color:rgba(255,255,255,.75)}
+.facts4{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.3);margin-bottom:40px}
+.facts4 div{padding:16px 16px 0 0}
+.facts4 span{font-size:14px;opacity:.75}
+.facts4 strong{display:block;font:600 22px/1.25 var(--display)}
+@media (max-width:800px){.facts4{grid-template-columns:1fr 1fr}}
+.mcalc{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:860px){.mcalc{grid-template-columns:1fr}}
+.field{margin-bottom:26px}
+.field>span{display:block;font-size:14px;opacity:.75;margin-bottom:6px}
+.field .val{font-weight:600;margin-bottom:6px}
+input[type=range]{width:100%;accent-color:var(--hl)}
+.mout{background:rgba(255,255,255,.07);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:18px}
+.mout .big{font:700 clamp(34px,4vw,50px)/1.1 var(--display);color:var(--hl)}
+.mout .row{display:flex;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.12)}
+.mout .row span:first-child{opacity:.75}
+.mout .disc{color:rgba(255,255,255,.65);margin:0}
+.vs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vs div{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.vs span{color:var(--soft)}
+.vs strong{display:block;font:700 clamp(26px,3vw,36px)/1.15 var(--display);margin:6px 0}
+.vs em{font-style:normal;color:var(--soft);font-size:15px}
+.vs .main{background:var(--hl);border-color:var(--hl)}
+.vs .main span,.vs .main em{color:var(--ink)}
+@media (max-width:860px){.vs{grid-template-columns:1fr}}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+.shots figure{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.shots img{width:100%}
+.shots figcaption{font-size:13px;color:var(--soft);padding:10px 12px}
+@media (max-width:900px){.shots{grid-template-columns:1fr 1fr}}
+
+/* location */
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.loc img{border-radius:var(--r);width:100%;max-height:600px;object-fit:cover;object-position:top}
+.loc ul{list-style:none;margin:0;padding:0}
+#finish li{padding:12px 0;border-bottom:1px solid var(--line)}
+.loc li{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.loc li span{color:var(--soft)}
+.loc li b{text-align:right}
+@media (max-width:860px){.loc{grid-template-columns:1fr}}
+.pic-wide{border-radius:var(--r);overflow:hidden}
+.pic-wide img{width:100%;max-height:520px;object-fit:cover}
+
+/* video */
+.vplayer{display:block;width:100%;aspect-ratio:16/9;border-radius:var(--r);background:#000}
+.hero .price .pnote{display:block;font:400 14px/1.4 var(--text);opacity:.8;margin-top:6px;max-width:460px}
+.facts4.light{border-top-color:var(--ink);margin-bottom:28px}
+.facts4.light span{color:var(--soft);opacity:1}
+.video{position:relative;display:block;width:100%;aspect-ratio:16/7;border:0;padding:0;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--dark)}
+.video img,.video svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6}
+.video .play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:var(--hl)}
+.video .play::after{content:"";position:absolute;left:33px;top:26px;border-left:24px solid #1d1d1d;border-top:16px solid transparent;border-bottom:16px solid transparent}
+.video .cap{position:absolute;left:24px;bottom:20px;color:#fff;font-weight:500}
+.vvert{display:block;width:100%;aspect-ratio:9/16;border-radius:var(--r);background:#000;object-fit:cover}
+.promo{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:center}
+.promo .ptext{font:400 21px/1.45 var(--display);margin-bottom:16px}
+@media (max-width:860px){.promo{grid-template-columns:1fr;gap:28px}.promo .vvert{max-width:320px;margin:0 auto}}
+.clist{margin:18px 0 0;padding:0;list-style:none}
+.clist li{padding:12px 0;border-bottom:1px solid var(--line)}
+
+/* hero story video */
+.story{position:absolute;right:24px;top:50%;transform:translateY(-50%);width:270px;aspect-ratio:9/16;border-radius:20px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.45);background:#000}
+.story video{width:100%;height:100%;object-fit:cover;display:block}
+.snd{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);white-space:nowrap;font:600 13px/1 var(--text);padding:9px 14px;border-radius:999px;border:0;background:rgba(255,255,255,.92);color:#1d1d1d;cursor:pointer}
+.has-story h1,.has-story .lede,.has-story .kpis{max-width:780px}
+@media (max-width:1180px){.has-story h1,.has-story .lede,.has-story .kpis{max-width:600px}}
+@media (max-width:960px){.story{position:relative;right:auto;top:auto;transform:none;width:230px;margin-top:32px}}
+
+/* karluu numbers, infra, region */
+.nums{display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--ink);margin-bottom:28px}
+.nums div{padding:22px 20px 0 0}
+.nums strong{display:block;font:600 clamp(34px,4vw,52px)/1 var(--display);margin-bottom:10px;color:var(--dark)}
+.nums span{color:var(--soft);font-size:15px;line-height:1.35;display:block}
+@media (max-width:900px){.nums{grid-template-columns:1fr 1fr}.nums div:last-child{grid-column:1/-1}}
+.infra figure{margin:0}
+.infra img{width:100%;aspect-ratio:14/15;object-fit:cover;border-radius:var(--r)}
+.infra figcaption{font:600 18px/1.3 var(--display);margin-top:12px}
+@media (max-width:900px){.grid4.infra{grid-template-columns:1fr 1fr}}
+.region{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:22px}
+.region .rnum{font:700 clamp(56px,7vw,92px)/1 var(--display);color:var(--accent);margin-bottom:14px}
+.region .rows{padding:0}
+@media (max-width:860px){.region{grid-template-columns:1fr;gap:16px}}
+.tlist{margin:14px 0 0;padding-left:20px}
+.tlist li{margin:6px 0;opacity:.95}
+.terms + .disc{margin-top:14px}
+.terms .btn-main{background:#fff;color:var(--dark)}
+
+/* steps & faq */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);row-gap:36px;border-top:2px solid var(--ink);counter-reset:s}
+.steps li{counter-increment:s;padding:24px 28px 0 0}
+.steps li::before{content:counter(s);display:block;font:700 36px/1 var(--display);color:var(--accent);margin-bottom:12px}
+body[data-theme="mariupol"] .steps li::before{color:var(--dark)}
+.steps p{color:var(--soft);font-size:16px;margin-top:6px}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font:600 19px/1.4 var(--display);list-style:none;display:flex;justify-content:space-between;gap:24px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;line-height:1;color:var(--accent)}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;color:var(--soft);max-width:760px}
+
+/* lead */
+.lead{background:var(--dark);color:#fff}
+.lead-box{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.lead h2{margin-bottom:16px}
+.lead p.l{font-size:19px;opacity:.9;max-width:480px}
+.lead ul{margin:20px 0 0;padding-left:20px;opacity:.9}
+.form{background:#fff;color:var(--ink);border-radius:var(--r);padding:30px;display:grid;gap:16px}
+.form label>span{display:block;font-size:14px;color:var(--soft);margin-bottom:6px}
+.form input[type=text],.form input[type=tel]{width:100%;font:400 16px var(--text);padding:14px 16px;border-radius:8px;border:1.5px solid var(--line)}
+.consent{display:flex;gap:10px;font-size:13px;color:var(--soft)}
+.form .err{display:none;color:#A12B1F;font-size:14px}
+.form .done{display:none}
+.form.sent .fields{display:none}
+.form.sent .done{display:block}
+.fields{display:grid;gap:16px}
+.form .btn{background:var(--dark);color:#fff}
+@media (max-width:860px){.lead-box{grid-template-columns:1fr}}
+
+/* other objects */
+.others{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.other{display:block;text-decoration:none;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.other:hover{border-color:var(--ink)}
+.other .im{height:150px;background:var(--dark);overflow:hidden}
+.other .im img,.other .im svg{width:100%;height:100%;object-fit:cover}
+.other div.t{padding:18px 20px}
+.other small{color:var(--soft)}
+@media (max-width:860px){.others{grid-template-columns:1fr}}
+
+footer{background:#151B19;color:#AEB8B4;font-size:14px;padding:48px 0 36px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:28px}
+footer b{color:#fff}
+footer a{color:#fff;text-decoration:none}
+footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;line-height:1.6}
+@media (max-width:860px){footer .cols{grid-template-columns:1fr}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body data-theme="karluu">
+<div class="proto">Прототип посадочных страниц на vector-360.ru: <a href="#/karluu">«Карлуу»</a><a href="#/mariupol">«Резиденция. Концепт»</a></div>
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Вектор 360">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M17 4 L22 17 L17 30 L12 17 Z" fill="#E0A526"/></svg>
+      <span><b>Вектор 360</b><small>агентство недвижимости, партнёр застройщика</small></span>
+    </a>
+    <nav class="nav" aria-label="Разделы страницы" id="nav"></nav>
+    <a class="phone" href="tel:88005503654">8 800 550-36-54</a>
+    <a class="btn btn-main" href="#lead" id="hdr-cta">Получить расчёт</a>
+  </div>
+</header>
+<main id="top"></main>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><b>Вектор 360</b><p style="margin-top:10px" id="ft-partner"></p></div>
+      <div><b>Контакты</b><p style="margin-top:10px"><a href="tel:88005503654">8 800 550-36-54</a><br><a href="mailto:info@vector-360.ru">info@vector-360.ru</a><br>Ежедневно с 9:00 до 21:00 мск</p></div>
+      <div><b>Документы</b><p style="margin-top:10px"><a id="ft-decl" href="#" target="_blank" rel="noopener">Проектная декларация на наш.дом.рф</a><br>Политика конфиденциальности</p></div>
+    </div>
+    <div class="legal" id="ft-legal"></div>
+  </div>
+</footer>
+<script>
+__ASSETS__
+const ND="https://xn--80az8a.xn--d1aqf.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B/%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3-%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA/%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82/";
+const fishT = t => `<span class="fish">${t||"рыба"}</span>`;
+const rub = n => Math.round(n).toLocaleString("ru-RU")+" ₽";
+
+function mtn(h,c){c=c||["#3E4D46","#55675E","#2F3B36","#24302B"];return `<svg viewBox="0 0 1200 ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FB2AE"/><stop offset="1" stop-color="#5E726C"/></linearGradient></defs><rect width="1200" height="${h}" fill="url(#sky)"/><path d="M0 ${h} L0 ${h*.55} L220 ${h*.25} L380 ${h*.5} L620 ${h*.12} L820 ${h*.45} L1000 ${h*.28} L1200 ${h*.5} L1200 ${h}Z" fill="${c[1]}"/><path d="M620 ${h*.12} L660 ${h*.2} L620 ${h*.18} L585 ${h*.2}Z" fill="#E9EEEC"/><path d="M0 ${h} L0 ${h*.72} L260 ${h*.55} L480 ${h*.75} L720 ${h*.58} L960 ${h*.74} L1200 ${h*.62} L1200 ${h}Z" fill="${c[0]}"/><path d="M0 ${h} L0 ${h*.88} Q600 ${h*.78} 1200 ${h*.9} L1200 ${h}Z" fill="${c[3]}"/></svg>`;}
+function city(h){return `<svg viewBox="0 0 1200 ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="1200" height="${h}" fill="#2B5A78"/><rect x="560" y="${h*.22}" width="120" height="${h}" fill="#3F7090"/><rect x="700" y="${h*.08}" width="140" height="${h}" fill="#4F82A3"/><rect x="860" y="${h*.3}" width="110" height="${h}" fill="#3F7090"/><rect x="990" y="${h*.16}" width="150" height="${h}" fill="#5D8FAE"/><g fill="#E0A526" opacity=".85"><rect x="730" y="${h*.2}" width="16" height="16"/><rect x="770" y="${h*.32}" width="16" height="16"/><rect x="1020" y="${h*.3}" width="16" height="16"/><rect x="1060" y="${h*.42}" width="16" height="16"/><rect x="590" y="${h*.4}" width="16" height="16"/></g><path d="M0 ${h*.84} Q300 ${h*.78} 600 ${h*.84} T1200 ${h*.84} V${h} H0Z" fill="#6C9BB8"/><path d="M0 ${h*.92} Q300 ${h*.87} 600 ${h*.92} T1200 ${h*.92} V${h} H0Z" fill="#86AFC8"/></svg>`;}
+
+const O = {
+ karluu:{name:"Карлуу", short:"«Карлуу»", region:"a", eyebrow:"Апартаменты 4* под ключ, Горный Алтай",
+  lede:"Строящийся апартаментный комплекс у аэропорта Горно-Алтайска на Чуйском тракте. Ключевое отличие от большинства проектов в регионе — он рассчитан на круглогодичный спрос. Пока объект строится, вы покупаете по минимальной цене. После сдачи — получаете актив, который работает круглый год.",
+  price:"от 14,98 млн ₽", priceLabel:"Базовая цена застройщика", priceNote:"При 100% оплате возможна скидка. Стоимость зависит от формы оплаты.",
+  stats:{title:"О «Карлуу» в цифрах",text:"Три линии малоэтажной застройки: торговая галерея с подземным паркингом, гостиница и четыре корпуса апартаментов с благоустроенной территорией.",
+   nums:[["250","апартаментов бизнес-класса"],["116","номеров в гостиничном корпусе"],["4*","категория апартаментов"],["2 712 м²","коммерческих помещений"],["75","машино-мест в подземном паркинге"]],
+   items:[["5 минут до аэропорта","Международный аэропорт Горно-Алтайска рядом: комплекс удобен и туристам, и деловым гостям"],["Отдых и работа на одной территории","Торговая галерея, гостиница с рестораном, спа и фитнесом, конференц-зал и коворкинг"],["Интересное рядом","30 минут до Бирюзовой Катуни, Манжерока и «Сибирской монеты» — известных курортных мест Горного Алтая"]]},
+  infra:{title:"Инфраструктура комплекса",text:"Комплекс специализируется на деловом и круглогодичном туризме, поэтому гостям есть чем заняться в любой сезон.",
+   items:[["k_rest","Ресторан"],["k_spa","Спа-комплекс"],["k_gym","Тренажёрный зал"],["k_conf","Конференц-зал и коворкинг"]],
+   note:"На первой линии — кофейня, магазины и подземный паркинг. Визуализации застройщика."},
+  finish:{title:"Апартаменты под ключ",img:"k_interior",alt:"Интерьер апартамента с кухней и спальным местом",text:"Апартаменты сдаются с полной отделкой, мебелью и техникой: после сдачи их можно сразу передать в управление. В отделке — дерево, камень и текстиль.",
+   list:["Студии и двухкомнатные апартаменты от 31 до 58,6 м²","Сдача — II квартал 2028 года","Монолит-кирпич, 3 этажа","Сдачу в аренду и обслуживание берёт на себя оператор UTROM"]},
+  kpis:[["13%","прогноз доходности от аренды"],["80 000 ₽","фиксированный доход в месяц по программе «Старт»"],["до 20%","прогноз роста стоимости в год"]],
+  kpiSrc:"Данные застройщика и управляющей компании UTROM. Прогноз, кроме условий программы «Старт».",
+  hero:()=>`<img src="${IMG.k_facade}" alt="Фасад корпуса апартаментов с деревянной отделкой и балконами">`, thumb:()=>`<img src="${IMG.k_yard}" alt="">`,
+  dev:"Мой Дом", decl:ND+"64362",
+  invest:{intro:"Пример расчёта из презентации застройщика: апартамент 31,52 м² в программе «Партнёрство». Расчёт по актуальному лоту под ваш бюджет подготовит менеджер на консультации.",
+   cards:[{t:"Апартамент 31,52 м²",p:"14 676 170 ₽",n:"Цена на начало 2026 года, первый взнос 40%. Актуальную цену уточнит менеджер",rows:[["Загрузка в расчёте","62%"],["Чистый доход инвестора в первый год","1 848 331 ₽",1],["Чистый доход на седьмой год","2 509 067 ₽"],["Окупаемость","7 лет"],["Прогноз роста стоимости","15–20% в год"],["Прогноз стоимости в 2030 году","25 683 298 ₽",1]]}],
+   chart:{title:"Прогноз стоимости апартамента 31,52 м²",data:[["2026",14676170],["2027",16877596],["2028",19372544],["2029",22307778],["2030",25683298]]},
+   region:{num:"×7,1",title:"Республика Алтай — первое место в России по росту цен на недвижимость",text:"Средняя цена квадратного метра выросла с 34 476 ₽ в 2015 году до 243 250 ₽ в 2025 году.",
+    rows:[["Республика Алтай","×7,1"],["Республика Дагестан","×7,0"],["Республика Крым","×4,3"],["Севастополь","×3,9"],["Краснодарский край","×3,8"]]}},
+  manage:{title:"Управление UTROM",text:"Комплексом управляет отельный оператор UTROM: больше 15 лет опыта в гостеприимстве, в портфеле больше 10 проектов апарт-отелей на Алтае и в Крыму. Оператор берёт на себя заселение, уборку, питание, трансферы, продвижение на туристических площадках и привлечение деловых гостей. Собственник выбирает одну из двух программ дохода.",
+   table:[["","«Партнёрство»","«Старт»"],["Доход","Зависит от загрузки: от 40 000 ₽ в месяц в первый год, до 70 000 ₽ после 12 месяцев и до 160 000 ₽ после 24 месяцев","Фиксированный: 80 000 ₽ в месяц весь срок договора, с авансированием платежей"],["Срок договора","1 год с пролонгацией","2 года с пролонгацией"],["Целевой срок возврата при цене 12 млн ₽","6,8 года (возможны отклонения)","12 лет (по условиям программы)"]]},
+  terms:{intro:"На консультации подберём для вас выгодные условия:",list:["При полной оплате возможна скидка","Рассрочка от застройщика с первоначальным взносом от 30%","Траншевая ипотека Сбербанка с первоначальным взносом от 20%","Лизинг для юрлиц: первый взнос от 5%, платежи до 7 лет, возврат НДС после ввода в эксплуатацию","Выгодная скидка при повышенном первоначальном взносе"],
+   note:"Договор долевого участия по 214-ФЗ. Условия рассрочки, ипотеки и лизинга — по данным застройщика и банка, уточняются на консультации и не являются офертой."},
+  show:{title:"Онлайн-показ «Карлуу»",img:"k_yard",text:"Не обязательно приезжать в Горный Алтай, чтобы увидеть «Карлуу». Мы проведём для вас онлайн-показ в реальном времени: покажем площадку, виды, окрестности, дорогу до аэропорта и Чуйского тракта. Ответим на все ваши вопросы, выберем лучшую планировку, согласуем выгодные для вас условия покупки.",note:"Показ по видеосвязи занимает 15–20 минут."},
+  loc:{img:"karluu_plan",items:[["Международный аэропорт Горно-Алтайска","5 минут, есть пешеходная дорога"],["Транзитный поток локации","более 4 млн человек в год"],["Манжерок, Бирюзовая Катунь","30 минут"],["«Сибирская монета»","30 минут"],["Шаттлы до аэропорта, Манжерока и игорной зоны","бесплатно"]]},
+  faqExtra:[["Что значит фиксированный доход?","По программе «Старт» управляющая компания платит собственнику 80 000 ₽ в месяц независимо от загрузки, договор заключается на 2 года с пролонгацией. Условия — по данным УК, подробности расскажем на консультации."]]},
+ mariupol:{name:"Резиденция. Концепт", short:"«Резиденция. Концепт»", region:"n", eyebrow:"Мариуполь, центральный район",
+  h1:"Ваша квартира у моря — всего под 2% годовых",
+  lede:"Ваш личный курорт круглый год: кирпичный дом с закрытым двором в центре Мариуполя, рядом Приморский парк и набережная Азовского моря. Ипотека 2% — для всех граждан России.",
+  heroVideo:"mr_sea",
+  price:null,
+  kpis:[["2%","ставка по ипотеке для всех граждан РФ"],["до 22 177 ₽","платёж в месяц"],["8 минут","до набережной Азовского моря"]],
+  kpiSrc:"Условия госпрограммы. Ипотеку выдают банки — участники программы.",
+  hero:()=>`<img src="${IMG.mr_hero}" alt="Вид на жилой квартал и Азовское море на закате">`, thumb:()=>`<img src="${IMG.mr_house}" alt="">`,
+  dev:"ГК «ЮгСтройИнвест»", decl:ND+"71846",
+  promo:{title:"Квартира у моря под 2%",vid:"mr_promo",text:["Мечта о новой квартире становится реальностью уже сегодня благодаря ипотеке под 2%.","Представьте: современный жилой квартал, уютный двор, развитая инфраструктура и море всего в 15 минутах от вашего дома.","Комфортная жизнь начинается с правильного выбора. И этот выбор может стоить 22 177 ₽ в месяц."]},
+  city:{title:"Мариуполь сегодня",vid:"mr_city",text:"Город активно развивается и с каждым годом становится удобнее для жизни.",list:["Обновляются дороги, набережная и общественные пространства","Строятся новые жилые кварталы","Открываются спортивные и социальные объекты, новые торговые центры"]},
+  about:{title:"О доме",text:"Дом на ул. Зелинского, 23 — один из трёх домов квартала. 128 квартир, 2 подъезда, 9 этажей.",img:"mr_yard",
+   items:[["Закрытый двор","Без доступа посторонним: детская площадка, тренажёры, воркаут-зона и прогулочные дорожки"],["Кирпичные фасады","Облицовка кирпичом на всю высоту, первый этаж — керамогранит, французское остекление лоджий"],["Авторские холлы","Меблированные зоны ожидания, безбарьерные входы и лифт грузоподъёмностью 1000 кг"]]},
+  finish:{title:"Отделка и ремонт",img:"mr_repair",text:"Все квартиры сдаются с предчистовой отделкой: шпатлёвка стен, стяжка полов, гидроизоляция санузлов, разводка электрики и индивидуальное отопление.",
+   list:["Можно купить квартиру с готовым ремонтом — 2 дизайн-проекта на выбор","Ремонт от 19 500 до 23 000 ₽ за м², гарантия 1 год","Переезд через 3 месяца после сдачи дома"]},
+  layouts:[["1-комнатная","33,9–41,4 м²","кухня 14–16,6 м²"],["2-комнатная","43,5–45,1 м²","кухня 9,7–10,5 м²"]],
+  loc:{img:"mr_map",items:[["Киноцентр «Комсомолец», СК «Ильичевец»","5 минут"],["Драмтеатр, автовокзал №2","6 минут"],["Городской сад, поликлиника №9","7 минут"],["Набережная, ТЦ «Галактика»","8 минут"],["Приморский парк и Сосновая роща","10 минут"]]},
+  faqExtra:[["Кто может взять ипотеку 2%?","Любой гражданин России, независимо от места жительства, на покупку квартиры в новостройке на новых территориях. Лимит кредита — 6 млн ₽, срок — до 30 лет."],["Почему на сайте нет цены?","Из-за активного спроса количество доступных квартир постоянно меняется. Оставляйте заявку — менеджер подберёт варианты под ваш бюджет."]]}
+};
+
+function heroHTML(o,id){
+  const story = o.heroVideo ? `<div class="story"><video autoplay muted loop playsinline poster="${IMG[o.heroVideo+"_poster"]}" aria-label="Видео: до моря 15 минут, платёж 22 177 ₽ в месяц"><source src="${VID[o.heroVideo]}" type="video/mp4"></video><button class="snd" type="button">Включить звук</button></div>` : "";
+  return `<section class="hero${story?" has-story":""}"><div class="hero-media">${o.hero()}</div><div class="wrap">
+   <div class="eyebrow">${o.h1?o.short+" · ":""}${o.eyebrow}</div>
+   <h1>${o.h1||o.name}</h1>
+   <p class="lede">${o.lede}</p>
+   ${o.price?`<div class="price"><span>${o.priceLabel}</span>${o.price}<small class="pnote">${o.priceNote||""}</small></div>`:""}
+   <div class="ctas">
+     <a class="btn btn-main" href="#lead">${o.price?"Получить расчёт по лоту":"Узнать актуальную цену"}</a>
+     <a class="btn btn-line" href="#lead">${o.region==="n"?"Рассчитать ипотеку":"Записаться на онлайн-показ"}</a>
+   </div>
+   <div class="kpis">${o.kpis.map(k=>`<div><strong>${k[0]}</strong><span>${k[1]}</span></div>`).join("")}</div>
+   <p class="src-note">${o.kpiSrc}</p>
+   ${story}
+  </div></section>`;
+}
+function whoHTML(o){ if(!o.who) return "";
+  return `<section class="section" style="padding-bottom:0"><div class="wrap"><div class="head"><h2>Для кого проект</h2></div><div class="grid4">${o.who.map(w=>`<div class="who"><p>${w}</p></div>`).join("")}</div></div></section>`;}
+function investHTML(o){ const v=o.invest; if(!v) return "";
+  let body="";
+  if(v.cards) body+=`<div class="${v.cards.length>1?"grid2":"grid2"}">${v.cards.map(c=>`<div class="calc-card"><div class="top"><span>${c.t}</span><strong>${c.p}</strong><em>${c.n}</em></div><div class="rows">${c.rows.map(r=>`<div class="${r[2]?"big":""}"><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}</div></div>`).join("")}
+    ${v.chart?chartHTML(v.chart):""}</div>`;
+  if(v.facts) body+=`<div class="grid4">${v.facts.map(f=>`<div class="card"><h3 style="font-size:30px">${f[0]}</h3><p>${f[1]}</p></div>`).join("")}</div>`;
+  if(v.region){const g=v.region; body+=`<div class="card region"><div><div class="rnum">${g.num}</div><h3>${g.title}</h3><p>${g.text}</p></div>
+   <div class="rows">${g.rows.map((r,i)=>`<div class="${i?"":"big"}"><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}<p class="disc" style="margin-top:10px">Рост средней цены м² за 2015–2025 годы, топ-5 регионов России. Данные из презентации застройщика.</p></div></div>`;}
+  return `<section class="section" id="invest"><div class="wrap"><div class="head"><h2>Инвестиционные показатели</h2><p>${v.intro}</p></div>${body}
+   <p class="disc">Расчёты и прогнозы предоставлены застройщиком и управляющей компанией. Фактический доход зависит от загрузки, расходов и рынка и не гарантируется.</p></div></section>`;}
+function chartHTML(c){const max=Math.max(...c.data.map(d=>d[1]));
+  return `<div class="card"><h3>${c.title}</h3><p>Сценарий роста по данным застройщика</p><div class="bars">${c.data.map((d,i)=>`<div class="bar ${i===c.data.length-1?"last":""}"><b>${(d[1]/1e6).toLocaleString("ru-RU",{maximumFractionDigits:1})} млн</b><i style="height:${Math.round(d[1]/max*170)}px"></i><span>${d[0]}</span></div>`).join("")}</div></div>`;}
+function manageHTML(o){const m=o.manage; if(!m) return "";
+  let body = m.items?`<div class="grid3">${m.items.map(i=>`<div class="card"><h3>${i[0]}</h3><p>${i[1]}</p></div>`).join("")}</div>`:"";
+  if(m.table) body+=`<div class="table-wrap"><table><thead><tr>${m.table[0].map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${m.table.slice(1).map(r=>`<tr>${r.map((c,i)=>i?`<td>${c}</td>`:`<td><b>${c}</b></td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  return `<section class="section" id="manage" style="padding-top:0"><div class="wrap"><div class="head"><h2>${m.title}</h2><p>${m.text}</p></div>${body}</div></section>`;}
+function termsHTML(o){ if(o.region==="n") return "";
+  const t=o.terms;
+  return `<section class="section" id="terms" style="padding-top:0"><div class="wrap"><div class="terms"><div><h2>Условия покупки</h2><p>${t.intro}</p><ul class="tlist">${t.list.map(x=>`<li>${x}</li>`).join("")}</ul></div><a class="btn btn-main" href="#lead">Подобрать условия</a></div>
+  <p class="disc">${t.note}</p>
+  ${o.offer?`<div class="offer"><div><span class="tag">Предложение октября</span><h3>${o.offer.title}</h3><p>${o.offer.text}</p></div><a class="btn btn-line" href="#lead">Узнать подробнее</a></div>`:""}</div></section>`;}
+function mortgageHTML(o){ if(o.region!=="n") return "";
+  return `<section class="section dark-sec" id="invest"><div class="wrap">
+   <div class="head"><h2>Море рядом. Ставка — всего 2%</h2><p>Забудьте о высоких процентах: ипотека 2% по госпрограмме доступна всем гражданам России для новостроек на новых территориях. Ипотеку оформляем в Сбербанке и ВТБ. С одобрением поможет наш ипотечный брокер.</p></div>
+   <div class="facts4"><div><span>Ставка</span><strong>2% годовых</strong></div><div><span>Лимит кредита</span><strong>6 000 000 ₽</strong></div><div><span>Срок</span><strong>до 30 лет</strong></div><div><span>Максимальный платёж</span><strong>22 177 ₽ в месяц</strong></div></div>
+   <div class="mcalc"><div>
+     <div class="field"><span>Стоимость квартиры</span><div class="val" id="m-p-o"></div><input type="range" id="m-p" min="3" max="12" step="0.1" value="7" aria-label="Стоимость квартиры, млн рублей"></div>
+     <div class="field"><span>Первоначальный взнос</span><div class="val" id="m-d-o"></div><input type="range" id="m-d" min="10" max="60" step="1" value="15" aria-label="Первоначальный взнос, процентов"></div>
+     <div class="field"><span>Срок кредита</span><div class="val" id="m-t-o"></div><input type="range" id="m-t" min="5" max="30" step="1" value="30" aria-label="Срок кредита, лет"></div>
+   </div><div class="mout" aria-live="polite">
+     <div><span style="opacity:.75">Ежемесячный платёж под 2%</span><div class="big" id="m-pay"></div></div>
+     <div class="row"><span>Сумма кредита</span><span id="m-loan"></span></div>
+     <div class="row"><span>Первоначальный взнос</span><span id="m-down"></span></div>
+     <p class="disc" id="m-warn" hidden>По программе можно взять не больше 6 млн ₽. Остаток стоимости добавляется к первоначальному взносу.</p>
+     <a class="btn btn-main" href="#lead">Проверить, одобрят ли ипотеку</a>
+     <p class="disc">Расчёт предварительный и не является офертой. Условия и полная стоимость кредита — на сайтах банков.</p>
+   </div></div></div></section>
+   <section class="section" id="rent"><div class="wrap">
+   <div class="head"><h2>Своя квартира дешевле аренды</h2><p>Однокомнатные квартиры в Мариуполе сдаются за 40 000–45 000 ₽ в месяц. Платёж по ипотеке 2% — почти вдвое меньше. Для инвестора аренда с запасом покрывает платёж.</p></div>
+   <div class="vs"><div class="main"><span>Платёж по ипотеке 2%</span><strong>до 22 177 ₽</strong><em>в месяц при кредите 6 млн ₽ на 30 лет</em></div>
+   <div><span>Аренда однокомнатной квартиры</span><strong>40 000–45 000 ₽</strong><em>в месяц, по объявлениям на Авито</em></div>
+   <div><span>Аренда двухкомнатной квартиры</span><strong>от 40 000 ₽</strong><em>в месяц, по объявлениям на Авито</em></div></div>
+   <div class="shots">
+     <figure><img src="${IMG.av1}" alt="Объявление: однокомнатная квартира 32,6 м² за 40 000 ₽ в месяц"><figcaption>ул. Бахчиванджи, новостройка</figcaption></figure>
+     <figure><img src="${IMG.av2}" alt="Объявление: однокомнатная квартира 32,7 м² за 40 000 ₽ в месяц"><figcaption>б-р Богдана Хмельницкого</figcaption></figure>
+     <figure><img src="${IMG.av3}" alt="Объявление: квартира-студия 32,6 м² за 45 000 ₽ в месяц"><figcaption>б-р Богдана Хмельницкого</figcaption></figure>
+     <figure><img src="${IMG.av0}" alt="Объявление: двухкомнатная квартира 47,1 м² за 40 000 ₽ в месяц"><figcaption>пр-т Строителей</figcaption></figure>
+   </div>
+   <p class="disc">Скриншоты объявлений об аренде на Авито, октябрь 2026 года.</p></div></section>`;}
+function aboutHTML(o){const a=o.about; if(!a) return "";
+  return `<section class="section" id="about"><div class="wrap"><div class="head"><h2>${a.title}</h2><p>${a.text}</p></div><div class="pic-wide" style="margin-bottom:22px"><img src="${IMG[a.img]}" alt="Закрытый двор дома"></div><div class="grid3">${a.items.map(i=>`<div class="card"><h3>${i[0]}</h3><p>${i[1]}</p></div>`).join("")}</div></div></section>`;}
+function finishHTML(o){const f=o.finish; if(!f) return "";
+  return `<section class="section" id="finish" style="padding-top:0"><div class="wrap"><div class="loc"><img src="${IMG[f.img]}" alt="${f.alt||"Интерьер квартиры с ремонтом"}"><div><h2 style="margin-bottom:18px">${f.title}</h2><p style="color:var(--soft)">${f.text}</p><ul style="margin:20px 0 0;padding:0;list-style:none">${f.list.map(x=>`<li>${x}</li>`).join("")}</ul></div></div></div></section>`;}
+function layoutsHTML(o){ if(!o.layouts) return "";
+  return `<section class="section" id="layouts" style="padding-top:0"><div class="wrap"><div class="head"><h2>Планировки</h2><p>Цены меняются, поэтому актуальную цену и наличие уточняет менеджер.</p></div><div class="table-wrap"><table><thead><tr><th>Тип</th><th>Площадь</th><th>Кухня</th><th>Цена</th><th></th></tr></thead><tbody>${o.layouts.map(l=>`<tr><td><b>${l[0]}</b></td><td>${l[1]}</td><td>${l[2]}</td><td>по запросу</td><td><a class="btn btn-main" href="#lead" style="padding:10px 16px;font-size:14px">Узнать цену</a></td></tr>`).join("")}</tbody></table></div></div></section>`;}
+function growthHTML(o){ if(!o.growth) return "";
+  return `<section class="section" id="growth" style="padding-top:0"><div class="wrap"><div class="head"><h2>Белокуриха растёт</h2><p>Рядом с курортом строится «Крепче стали» — спортивно-образовательный кластер ГК «Жилищная инициатива» на 43 га. Для инвестора это новый круглогодичный поток людей и рост спроса на размещение.</p></div>
+  <div class="grid4"><div class="card"><h3 style="font-size:28px">25 млрд ₽</h3><p>инвестиций в кластер</p></div><div class="card"><h3 style="font-size:28px">10 000</h3><p>подростков в год примет круглогодичный лагерь</p></div><div class="card"><h3 style="font-size:28px">120 тыс. м²</h3><p>жилья для сотрудников туристической отрасли</p></div><div class="card"><h3 style="font-size:28px">550 и 330</h3><p>мест в новой школе и детском саду</p></div></div>
+  <p class="disc">По данным презентации проекта «Крепче стали».</p></div></section>`;}
+function locHTML(o){ const l=o.loc; if(!l) return "";
+  return `<section class="section" id="loc" style="padding-top:0"><div class="wrap"><div class="head"><h2>Расположение</h2></div><div class="loc"><img src="${IMG[l.img]}" alt="Расположение объекта"><ul>${l.items.map(i=>`<li><span>${i[0]}</span><b>${i[1]}</b></li>`).join("")}</ul></div></div></section>`;}
+function statsHTML(o){const k=o.stats; if(!k) return "";
+  return `<section class="section" id="stock"><div class="wrap"><div class="head"><h2>${k.title}</h2><p>${k.text}</p></div>
+  <div class="nums">${k.nums.map(n=>`<div><strong>${n[0]}</strong><span>${n[1]}</span></div>`).join("")}</div>
+  <div class="grid3">${k.items.map(i=>`<div class="card"><h3>${i[0]}</h3><p>${i[1]}</p></div>`).join("")}</div>
+  <a class="btn btn-main" href="#lead" style="margin-top:28px">Подобрать апартамент</a></div></section>`;}
+function infraHTML(o){const f=o.infra; if(!f) return "";
+  return `<section class="section" id="infra" style="padding-top:0"><div class="wrap"><div class="head"><h2>${f.title}</h2><p>${f.text}</p></div>
+  <div class="grid4 infra">${f.items.map(i=>`<figure><img src="${IMG[i[0]]}" alt="${i[1]}"><figcaption>${i[1]}</figcaption></figure>`).join("")}</div>
+  <p class="disc">${f.note}</p></div></section>`;}
+function videoHTML(o){
+  if(o.promo){const p=o.promo;
+    return `<section class="section" id="video" style="padding-top:0"><div class="wrap promo"><video class="vvert" controls playsinline preload="none" poster="${IMG[p.vid+"_poster"]}"><source src="${VID[p.vid]}" type="video/mp4"></video>
+    <div><h2 style="margin-bottom:20px">${p.title}</h2>${p.text.map(t=>`<p class="ptext">${t}</p>`).join("")}<a class="btn btn-main" href="#lead" style="margin-top:12px">Узнать актуальную цену</a></div></div></section>`;}
+  if(o.show){const s=o.show;
+    return `<section class="section" id="video" style="padding-top:0"><div class="wrap"><div class="loc"><img src="${IMG[s.img]}" alt="Двор комплекса с зеленью и зонами отдыха"><div><h2 style="margin-bottom:18px">${s.title}</h2><p style="color:var(--soft)">${s.text}</p><p style="margin-top:14px;font-weight:600">${s.note}</p><a class="btn btn-main" href="#lead" style="margin-top:24px">Записаться на онлайн-показ</a></div></div></div></section>`;}
+  return "";}
+function cityHTML(o){const c=o.city; if(!c) return "";
+  return `<section class="section" id="city" style="padding-top:0"><div class="wrap"><div class="loc"><video class="vplayer" style="aspect-ratio:13/10" controls playsinline preload="none" poster="${IMG[c.vid+"_poster"]}"><source src="${VID[c.vid]}" type="video/mp4"></video>
+  <div><h2 style="margin-bottom:18px">${c.title}</h2><p style="color:var(--soft)">${c.text}</p><ul class="clist">${c.list.map(x=>`<li>${x}</li>`).join("")}</ul></div></div></div></section>`;}
+function stepsHTML(o){
+  const n=o.region==="n", obj=n?"квартиру":"апартамент";
+  const s=[["Звонок",`Оперативно перезваниваем и рассказываем всё о ${n?"доме":"комплексе"}`],["Онлайн-показ","Показываем объект по видеосвязи и помогаем определиться с планировкой"],
+    n?["Ипотека","Наш ипотечный брокер поможет с одобрением ипотеки 2%"]:["Условия","Согласуем с застройщиком выгодные для вас условия покупки"],
+    ["Сделка","Контролируем регистрацию договора"],["Стройка","Ведём вас весь срок строительства: присылаем фото и видео с площадки"],["Приёмка",`Примем ${obj} вместе с вами или вместо вас, если приехать лично будет сложно`]];
+  return `<section class="section" id="how" style="padding-top:0"><div class="wrap"><div class="head"><h2>Как проходит покупка</h2><p>Мы за долгосрочные отношения: 8 лет работаем в недвижимости и ведём полный цикл сделки, а после сделки остаёмся на связи. Цены — напрямую от застройщика, без наценки, подбор и сопровождение для покупателя бесплатны.</p></div><ol class="steps">
+   ${s.map(x=>`<li><h3>${x[0]}</h3><p>${x[1]}</p></li>`).join("")}</ol></div></section>`;}
+function faqHTML(o){
+  const base=[["Покупка через вас дороже, чем у застройщика?","Нет. Цены напрямую от застройщика, без наценки. Наши услуги для покупателя бесплатны: вознаграждение агентству платит застройщик."],["Можно купить дистанционно?","Да. Показываем объект по видеосвязи в реальном времени, договор подписывается электронно, оплата проходит через эскроу-счёт в банке."]];
+  if(o.region==="a") base.push(["Доходность гарантирована?","Цифры доходности и роста стоимости — прогноз застройщика и управляющей компании. Фактический доход зависит от загрузки и рынка."]);
+  const all=[...(o.faqExtra||[]),...base];
+  return `<section class="section" id="faq" style="padding-top:0"><div class="wrap"><div class="head"><h2>Частые вопросы</h2></div>${all.map(q=>`<details><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join("")}</div></section>`;}
+function leadHTML(o){
+  const n=o.region==="n";
+  return `<section class="section lead" id="lead"><div class="wrap lead-box"><div>
+   <h2>${n?"Узнайте актуальную цену и платёж":"Получите расчёт по лоту"}</h2>
+   ${n?"":`<p class="l">Перезвоним, подберём апартамент под ваш бюджет и рассчитаем доходность.</p>
+   <ul><li>Онлайн-показ комплекса по видеосвязи</li><li>Перезвоним в течение 10 минут</li></ul>`}</div>
+   <form class="form" novalidate><div class="fields">
+     <label><span>Имя</span><input type="text" name="name" autocomplete="name" required></label>
+     <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" required></label>
+     <label class="consent"><input type="checkbox" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#" style="color:inherit">политикой конфиденциальности</a></span></label>
+     <p class="err" role="alert">Укажите имя, телефон и подтвердите согласие.</p>
+     <button class="btn" type="submit">${n?"Узнать цену":"Получить расчёт"}</button></div>
+     <div class="done" role="status"><h3>Заявка отправлена</h3><p style="margin-top:8px;color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
+   </form></div></section>`;}
+function othersHTML(id){
+  return `<section class="section"><div class="wrap"><div class="head"><h2>Другие объекты</h2></div><div class="others">${Object.entries(O).filter(([k])=>k!==id).map(([k,v])=>`<a class="other" href="#/${k}"><div class="im">${v.thumb()}</div><div class="t"><h3>${v.name}</h3><small>${v.eyebrow}</small></div></a>`).join("")}</div></div></section>`;}
+
+function calcM(){
+  const p=+document.getElementById("m-p").value, d=+document.getElementById("m-d").value, t=+document.getElementById("m-t").value;
+  let down=p*d/100, loan=p-down, cap=false; if(loan>6){down+=loan-6;loan=6;cap=true;}
+  const r=0.02/12,n=t*12,pay=loan*1e6*r/(1-Math.pow(1+r,-n));
+  const y=t%10===1&&t%100!==11?"год":(t%10>=2&&t%10<=4&&(t%100<10||t%100>=20))?"года":"лет";
+  document.getElementById("m-p-o").textContent=p.toLocaleString("ru-RU",{maximumFractionDigits:1})+" млн ₽";
+  document.getElementById("m-d-o").textContent=d+"%"; document.getElementById("m-t-o").textContent=t+" "+y;
+  document.getElementById("m-pay").textContent=rub(pay);
+  document.getElementById("m-loan").textContent=rub(loan*1e6); document.getElementById("m-down").textContent=rub(down*1e6);
+  document.getElementById("m-warn").hidden=!cap;
+}
+
+function render(){
+  const id=(location.hash.match(/^#\/(\w+)/)||[])[1];
+  const key=O[id]?id:"karluu"; const o=O[key];
+  if(document.body.dataset.obj===key) return;
+  document.body.dataset.obj=key; document.body.dataset.theme=key;
+  document.querySelectorAll(".proto a").forEach(a=>{ if(a.getAttribute("href")==="#/"+key) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  const blocks = o.region==="n"
+    ? [mortgageHTML,aboutHTML,finishHTML,layoutsHTML,videoHTML,cityHTML,locHTML]
+    : [statsHTML,infraHTML,finishHTML,investHTML,manageHTML,growthHTML,termsHTML,locHTML,videoHTML];
+  document.getElementById("top").innerHTML = heroHTML(o,key)+blocks.map(f=>f(o)).join("")+stepsHTML(o)+faqHTML(o)+leadHTML(o)+othersHTML(key);
+  const nav=o.region==="n"?[["#invest","Ипотека 2%"],["#about","О доме"],["#layouts","Планировки"],["#video","Видео"],["#city","Город"]]:[["#stock","О комплексе"],["#invest","Доходность"],["#manage","Управление"],["#terms","Условия"],["#loc","Расположение"]];
+  document.querySelectorAll(".snd").forEach(b=>b.addEventListener("click",()=>{const v=b.previousElementSibling; v.muted=!v.muted; if(!v.muted){v.currentTime=0;v.play();} b.textContent=v.muted?"Включить звук":"Выключить звук";}));
+  document.getElementById("nav").innerHTML=nav.map(n=>`<a href="${n[0]}">${n[1]}</a>`).join("");
+  document.getElementById("hdr-cta").textContent=o.region==="n"?"Узнать цену":"Получить расчёт";
+  document.getElementById("ft-partner").innerHTML=`Агентство недвижимости. Работаем с застройщиком ${o.dev} по агентскому договору.`;
+  const decl=document.getElementById("ft-decl"); decl.href=o.decl||"https://наш.дом.рф"; 
+  document.getElementById("ft-legal").innerHTML=`ИП Чернова Елена Евгеньевна, ИНН 344221507488, ОГРНИП 324237500481614<br>Информация на сайте носит справочный характер и не является публичной офертой. Цены — по официальному прайсу застройщика. Доходность и рост стоимости — прогноз застройщика и управляющей компании, не гарантия. Материалы и визуализации предоставлены застройщиком. Проектные декларации размещены на наш.дом.рф.`;
+  document.title=`${o.name} — ${o.eyebrow.toLowerCase()} | Вектор 360`;
+  if(o.region==="n"){["m-p","m-d","m-t"].forEach(i=>document.getElementById(i).addEventListener("input",calcM));calcM();}
+  document.querySelectorAll(".form").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();const ok=[...f.querySelectorAll("[required]")].every(i=>i.type==="checkbox"?i.checked:i.value.trim().length>1);f.querySelector(".err").style.display=ok?"none":"block";if(ok)f.classList.add("sent");}));
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",()=>{ if(location.hash.startsWith("#/")) render(); });
+render();
+</script>
+</body>
+</html>
