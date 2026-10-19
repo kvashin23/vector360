@@ -307,8 +307,9 @@ const O = {
   invest:{intro:"Пример расчёта из презентации застройщика: апартамент 31,52 м² в программе «Партнёрство». Расчёт по актуальному лоту под ваш бюджет подготовит менеджер на консультации.",
    cards:[{t:"Апартамент 31,52 м²",p:"14 676 170 ₽",n:"Цена на начало 2026 года, первый взнос 40%. Актуальную цену уточнит менеджер",rows:[["Загрузка в расчёте","62%"],["Чистый доход инвестора в первый год","1 848 331 ₽",1],["Чистый доход на седьмой год","2 509 067 ₽"],["Окупаемость","7 лет"],["Прогноз роста стоимости","15–20% в год"],["Прогноз стоимости в 2030 году","25 683 298 ₽",1]]}],
    chart:{title:"Прогноз стоимости апартамента 31,52 м²",data:[["2026",14676170],["2027",16877596],["2028",19372544],["2029",22307778],["2030",25683298]]},
-   region:{num:"×7,1",title:"Республика Алтай — первое место в России по росту цен на недвижимость",text:"Средняя цена квадратного метра выросла с 34 476 ₽ в 2015 году до 243 250 ₽ в 2025 году.",
-    rows:[["Республика Алтай","×7,1"],["Республика Дагестан","×7,0"],["Республика Крым","×4,3"],["Севастополь","×3,9"],["Краснодарский край","×3,8"]]}},
+   region:{num:"×2,3",title:"Туристов на Алтае стало в 2,3 раза больше",text:"2,8 млн туристов в 2025 году против примерно 1,2 млн в 2020-м. Алтай всё чаще выбирают для отдыха, а больше туристов — больше спрос на размещение.",
+    rowsTitle:"Сезон — 12 месяцев в году",rows:[["Зима","горные лыжи: Манжерок, Белокуриха"],["Лето","Катунь, горы, озёра"],["Круглый год","санатории Белокурихи"]],
+    note:"Спрос на отдых не заканчивается с зимой. Турпоток Республики Алтай — по данным «Известий», 4 августа 2026 года."}},
   manage:{title:"Управление UTROM",text:"Комплексом управляет отельный оператор UTROM: больше 15 лет опыта в гостеприимстве, в портфеле больше 10 проектов апарт-отелей на Алтае и в Крыму. Оператор берёт на себя заселение, уборку, питание, трансферы, продвижение на туристических площадках и привлечение деловых гостей. Собственник выбирает одну из двух программ дохода.",
    table:[["","«Партнёрство»","«Старт»"],["Доход","Зависит от загрузки: от 40 000 ₽ в месяц в первый год, до 70 000 ₽ после 12 месяцев и до 160 000 ₽ после 24 месяцев","Фиксированный: 80 000 ₽ в месяц весь срок договора, с авансированием платежей"],["Срок договора","1 год с пролонгацией","2 года с пролонгацией"],["Целевой срок возврата при цене 12 млн ₽","6,8 года (возможны отклонения)","12 лет (по условиям программы)"]]},
   terms:{intro:"На консультации подберём для вас выгодные условия:",list:["При полной оплате возможна скидка","Рассрочка от застройщика с первоначальным взносом от 30%","Траншевая ипотека Сбербанка с первоначальным взносом от 20%","Лизинг для юрлиц: первый взнос от 5%, платежи до 7 лет, возврат НДС после ввода в эксплуатацию","Выгодная скидка при повышенном первоначальном взносе"],
@@ -318,19 +319,18 @@ const O = {
   faqExtra:[["Что значит фиксированный доход?","По программе «Старт» управляющая компания платит собственнику 80 000 ₽ в месяц независимо от загрузки, договор заключается на 2 года с пролонгацией. Условия — по данным УК, подробности расскажем на консультации."]]},
  mariupol:{name:"Резиденция. Концепт", short:"«Резиденция. Концепт»", region:"n", eyebrow:"Мариуполь, центральный район",
   h1:"Ваша квартира у моря — всего под 2% годовых",
-  lede:"Ваш личный курорт круглый год: кирпичный дом с закрытым двором в центре Мариуполя, рядом Приморский парк и набережная Азовского моря. Ипотека 2% — для всех граждан России.",
-  heroVideo:"mr_sea",
+  lede:"Личный курорт круглый год: кирпичный дом с закрытым двором в центре Мариуполя, Приморский парк и набережная Азовского моря.",
   price:null,
-  kpis:[["2%","ставка по ипотеке для всех граждан РФ"],["до 22 177 ₽","платёж в месяц"],["8 минут","до набережной Азовского моря"]],
+  kpis:[["2%","ставка по ипотеке для всех граждан РФ"],["22 177 ₽","платёж в месяц при кредите 6 млн ₽"],["8 минут","до набережной Азовского моря"]],
   kpiSrc:"Условия госпрограммы. Ипотеку выдают банки — участники программы.",
   hero:()=>`<img src="${IMG.mr_hero}" alt="Вид на жилой квартал и Азовское море на закате">`, thumb:()=>`<img src="${IMG.mr_house}" alt="">`,
   dev:"ГК «ЮгСтройИнвест»", decl:ND+"71846",
-  promo:{title:"Квартира у моря под 2%",vid:"mr_promo",text:["Мечта о новой квартире становится реальностью уже сегодня благодаря ипотеке под 2%.","Представьте: современный жилой квартал, уютный двор, развитая инфраструктура и море всего в 15 минутах от вашего дома.","Комфортная жизнь начинается с правильного выбора. И этот выбор может стоить 22 177 ₽ в месяц."]},
+  promo:{title:"Квартира у моря под 2%",vid:"mr_sea",text:["Мечта о новой квартире становится реальностью уже сегодня благодаря ипотеке под 2%.","Представьте: современный жилой квартал, уютный двор, развитая инфраструктура и море всего в 15 минутах от вашего дома.","Комфортная жизнь начинается с правильного выбора. И этот выбор может стоить 22 177 ₽ в месяц."]},
   city:{title:"Мариуполь сегодня",vid:"mr_city",text:"Город активно развивается и с каждым годом становится удобнее для жизни.",list:["Обновляются дороги, набережная и общественные пространства","Строятся новые жилые кварталы","Открываются спортивные и социальные объекты, новые торговые центры"]},
-  about:{title:"О доме",text:"Дом на ул. Зелинского, 23 — один из трёх домов квартала. 128 квартир, 2 подъезда, 9 этажей.",img:"mr_yard",
+  about:{title:"О доме",text:"Дом на ул. Зелинского, 23 — один из трёх домов квартала. 128 квартир, 2 подъезда, 9 этажей.",img:"mr_house",
    items:[["Закрытый двор","Без доступа посторонним: детская площадка, тренажёры, воркаут-зона и прогулочные дорожки"],["Кирпичные фасады","Облицовка кирпичом на всю высоту, первый этаж — керамогранит, французское остекление лоджий"],["Авторские холлы","Меблированные зоны ожидания, безбарьерные входы и лифт грузоподъёмностью 1000 кг"]]},
   finish:{title:"Отделка и ремонт",img:"mr_repair",text:"Все квартиры сдаются с предчистовой отделкой: шпатлёвка стен, стяжка полов, гидроизоляция санузлов, разводка электрики и индивидуальное отопление.",
-   list:["Можно купить квартиру с готовым ремонтом — 2 дизайн-проекта на выбор","Ремонт от 19 500 до 23 000 ₽ за м², гарантия 1 год","Переезд через 3 месяца после сдачи дома"]},
+   list:["Можно купить квартиру с готовым ремонтом — 2 дизайн-проекта на выбор","Ремонт от 19 500 до 23 000 ₽ за м², гарантия 1 год"]},
   layouts:[["1-комнатная","33,9–41,4 м²","кухня 14–16,6 м²"],["2-комнатная","43,5–45,1 м²","кухня 9,7–10,5 м²"]],
   loc:{img:"mr_map",items:[["Киноцентр «Комсомолец», СК «Ильичевец»","5 минут"],["Драмтеатр, автовокзал №2","6 минут"],["Городской сад, поликлиника №9","7 минут"],["Набережная, ТЦ «Галактика»","8 минут"],["Приморский парк и Сосновая роща","10 минут"]]},
   faqExtra:[["Кто может взять ипотеку 2%?","Любой гражданин России, независимо от места жительства, на покупку квартиры в новостройке на новых территориях. Лимит кредита — 6 млн ₽, срок — до 30 лет."],["Почему на сайте нет цены?","Из-за активного спроса количество доступных квартир постоянно меняется. Оставляйте заявку — менеджер подберёт варианты под ваш бюджет."]]}
@@ -360,7 +360,7 @@ function investHTML(o){ const v=o.invest; if(!v) return "";
     ${v.chart?chartHTML(v.chart):""}</div>`;
   if(v.facts) body+=`<div class="grid4">${v.facts.map(f=>`<div class="card"><h3 style="font-size:30px">${f[0]}</h3><p>${f[1]}</p></div>`).join("")}</div>`;
   if(v.region){const g=v.region; body+=`<div class="card region"><div><div class="rnum">${g.num}</div><h3>${g.title}</h3><p>${g.text}</p></div>
-   <div class="rows">${g.rows.map((r,i)=>`<div class="${i?"":"big"}"><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}<p class="disc" style="margin-top:10px">Рост средней цены м² за 2015–2025 годы, топ-5 регионов России. Данные из презентации застройщика.</p></div></div>`;}
+   <div class="rows"><h3 style="margin:6px 0 4px">${g.rowsTitle}</h3>${g.rows.map(r=>`<div><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}<p class="disc" style="margin-top:10px">${g.note}</p></div></div>`;}
   return `<section class="section" id="invest"><div class="wrap"><div class="head"><h2>Инвестиционные показатели</h2><p>${v.intro}</p></div>${body}
    <p class="disc">Расчёты и прогнозы предоставлены застройщиком и управляющей компанией. Фактический доход зависит от загрузки, расходов и рынка и не гарантируется.</p></div></section>`;}
 function chartHTML(c){const max=Math.max(...c.data.map(d=>d[1]));
@@ -377,7 +377,7 @@ function termsHTML(o){ if(o.region==="n") return "";
 function mortgageHTML(o){ if(o.region!=="n") return "";
   return `<section class="section dark-sec" id="invest"><div class="wrap">
    <div class="head"><h2>Море рядом. Ставка — всего 2%</h2><p>Забудьте о высоких процентах: ипотека 2% по госпрограмме доступна всем гражданам России для новостроек на новых территориях. Ипотеку оформляем в Сбербанке и ВТБ. С одобрением поможет наш ипотечный брокер.</p></div>
-   <div class="facts4"><div><span>Ставка</span><strong>2% годовых</strong></div><div><span>Лимит кредита</span><strong>6 000 000 ₽</strong></div><div><span>Срок</span><strong>до 30 лет</strong></div><div><span>Максимальный платёж</span><strong>22 177 ₽ в месяц</strong></div></div>
+   <div class="facts4"><div><span>Ставка</span><strong>2% годовых</strong></div><div><span>Лимит кредита</span><strong>6 000 000 ₽</strong></div><div><span>Срок</span><strong>до 30 лет</strong></div><div><span>Платёж при кредите 6 млн ₽</span><strong>22 177 ₽ в месяц</strong></div></div>
    <div class="mcalc"><div>
      <div class="field"><span>Стоимость квартиры</span><div class="val" id="m-p-o"></div><input type="range" id="m-p" min="3" max="12" step="0.1" value="7" aria-label="Стоимость квартиры, млн рублей"></div>
      <div class="field"><span>Первоначальный взнос</span><div class="val" id="m-d-o"></div><input type="range" id="m-d" min="10" max="60" step="1" value="15" aria-label="Первоначальный взнос, процентов"></div>
@@ -388,11 +388,11 @@ function mortgageHTML(o){ if(o.region!=="n") return "";
      <div class="row"><span>Первоначальный взнос</span><span id="m-down"></span></div>
      <p class="disc" id="m-warn" hidden>По программе можно взять не больше 6 млн ₽. Остаток стоимости добавляется к первоначальному взносу.</p>
      <a class="btn btn-main" href="#lead">Проверить, одобрят ли ипотеку</a>
-     <p class="disc">Расчёт предварительный и не является офертой. Условия и полная стоимость кредита — на сайтах банков.</p>
+     <p class="disc">Расчёт предварительный и не является офертой.</p>
    </div></div></div></section>
    <section class="section" id="rent"><div class="wrap">
    <div class="head"><h2>Своя квартира дешевле аренды</h2><p>Однокомнатные квартиры в Мариуполе сдаются за 40 000–45 000 ₽ в месяц. Платёж по ипотеке 2% — почти вдвое меньше. Для инвестора аренда с запасом покрывает платёж.</p></div>
-   <div class="vs"><div class="main"><span>Платёж по ипотеке 2%</span><strong>до 22 177 ₽</strong><em>в месяц при кредите 6 млн ₽ на 30 лет</em></div>
+   <div class="vs"><div class="main"><span>Платёж по ипотеке 2%</span><strong>22 177 ₽</strong><em>в месяц при кредите 6 млн ₽ на 30 лет</em></div>
    <div><span>Аренда однокомнатной квартиры</span><strong>40 000–45 000 ₽</strong><em>в месяц, по объявлениям на Авито</em></div>
    <div><span>Аренда двухкомнатной квартиры</span><strong>от 40 000 ₽</strong><em>в месяц, по объявлениям на Авито</em></div></div>
    <div class="shots">
@@ -403,7 +403,7 @@ function mortgageHTML(o){ if(o.region!=="n") return "";
    </div>
    <p class="disc">Скриншоты объявлений об аренде на Авито, октябрь 2026 года.</p></div></section>`;}
 function aboutHTML(o){const a=o.about; if(!a) return "";
-  return `<section class="section" id="about"><div class="wrap"><div class="head"><h2>${a.title}</h2><p>${a.text}</p></div><div class="pic-wide" style="margin-bottom:22px"><img src="${IMG[a.img]}" alt="Закрытый двор дома"></div><div class="grid3">${a.items.map(i=>`<div class="card"><h3>${i[0]}</h3><p>${i[1]}</p></div>`).join("")}</div></div></section>`;}
+  return `<section class="section" id="about"><div class="wrap"><div class="head"><h2>${a.title}</h2><p>${a.text}</p></div><div class="pic-wide" style="margin-bottom:22px"><img src="${IMG[a.img]}" alt="Фасад дома на ул. Зелинского, 23"></div><div class="grid3">${a.items.map(i=>`<div class="card"><h3>${i[0]}</h3><p>${i[1]}</p></div>`).join("")}</div></div></section>`;}
 function finishHTML(o){const f=o.finish; if(!f) return "";
   return `<section class="section" id="finish" style="padding-top:0"><div class="wrap"><div class="loc"><img src="${IMG[f.img]}" alt="${f.alt||"Интерьер квартиры с ремонтом"}"><div><h2 style="margin-bottom:18px">${f.title}</h2><p style="color:var(--soft)">${f.text}</p><ul style="margin:20px 0 0;padding:0;list-style:none">${f.list.map(x=>`<li>${x}</li>`).join("")}</ul></div></div></div></section>`;}
 function layoutsHTML(o){ if(!o.layouts) return "";
@@ -425,7 +425,7 @@ function infraHTML(o){const f=o.infra; if(!f) return "";
   <p class="disc">${f.note}</p></div></section>`;}
 function videoHTML(o){
   if(o.promo){const p=o.promo;
-    return `<section class="section" id="video" style="padding-top:0"><div class="wrap promo"><video class="vvert" controls playsinline preload="none" poster="${IMG[p.vid+"_poster"]}"><source src="${VID[p.vid]}" type="video/mp4"></video>
+    return `<section class="section" id="video"><div class="wrap promo"><video class="vvert" controls playsinline preload="none" poster="${IMG[p.vid+"_poster"]}"><source src="${VID[p.vid]}" type="video/mp4"></video>
     <div><h2 style="margin-bottom:20px">${p.title}</h2>${p.text.map(t=>`<p class="ptext">${t}</p>`).join("")}<a class="btn btn-main" href="#lead" style="margin-top:12px">Узнать актуальную цену</a></div></div></section>`;}
   if(o.show){const s=o.show;
     return `<section class="section" id="video" style="padding-top:0"><div class="wrap"><div class="loc"><img src="${IMG[s.img]}" alt="Двор комплекса с зеленью и зонами отдыха"><div><h2 style="margin-bottom:18px">${s.title}</h2><p style="color:var(--soft)">${s.text}</p><p style="margin-top:14px;font-weight:600">${s.note}</p><a class="btn btn-main" href="#lead" style="margin-top:24px">Записаться на онлайн-показ</a></div></div></div></section>`;}
@@ -448,15 +448,15 @@ function faqHTML(o){
 function leadHTML(o){
   const n=o.region==="n";
   return `<section class="section lead" id="lead"><div class="wrap lead-box"><div>
-   <h2>${n?"Узнайте актуальную цену и платёж":"Получите расчёт по лоту"}</h2>
-   ${n?"":`<p class="l">Перезвоним, подберём апартамент под ваш бюджет и рассчитаем доходность.</p>
+   <h2>${n?"Узнать подробнее":"Получите расчёт по лоту"}</h2>
+   ${n?`<p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>`:`<p class="l">Перезвоним, подберём апартамент под ваш бюджет и рассчитаем доходность.</p>
    <ul><li>Онлайн-показ комплекса по видеосвязи</li><li>Перезвоним в течение 10 минут</li></ul>`}</div>
    <form class="form" novalidate><div class="fields">
      <label><span>Имя</span><input type="text" name="name" autocomplete="name" required></label>
      <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" required></label>
      <label class="consent"><input type="checkbox" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#" style="color:inherit">политикой конфиденциальности</a></span></label>
      <p class="err" role="alert">Укажите имя, телефон и подтвердите согласие.</p>
-     <button class="btn" type="submit">${n?"Узнать цену":"Получить расчёт"}</button></div>
+     <button class="btn" type="submit">${n?"Узнать подробнее":"Получить расчёт"}</button></div>
      <div class="done" role="status"><h3>Заявка отправлена</h3><p style="margin-top:8px;color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
    </form></div></section>`;}
 function othersHTML(id){
@@ -481,10 +481,10 @@ function render(){
   document.body.dataset.obj=key; document.body.dataset.theme=key;
   document.querySelectorAll(".proto a").forEach(a=>{ if(a.getAttribute("href")==="#/"+key) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   const blocks = o.region==="n"
-    ? [mortgageHTML,aboutHTML,finishHTML,layoutsHTML,videoHTML,cityHTML,locHTML]
+    ? [videoHTML,mortgageHTML,aboutHTML,finishHTML,layoutsHTML,cityHTML,locHTML]
     : [statsHTML,infraHTML,finishHTML,investHTML,manageHTML,growthHTML,termsHTML,locHTML,videoHTML];
   document.getElementById("top").innerHTML = heroHTML(o,key)+blocks.map(f=>f(o)).join("")+stepsHTML(o)+faqHTML(o)+leadHTML(o)+othersHTML(key);
-  const nav=o.region==="n"?[["#invest","Ипотека 2%"],["#about","О доме"],["#layouts","Планировки"],["#video","Видео"],["#city","Город"]]:[["#stock","О комплексе"],["#invest","Доходность"],["#manage","Управление"],["#terms","Условия"],["#loc","Расположение"]];
+  const nav=o.region==="n"?[["#invest","Ипотека 2%"],["#about","О доме"],["#layouts","Планировки"],["#city","Город"],["#loc","Расположение"]]:[["#stock","О комплексе"],["#invest","Доходность"],["#manage","Управление"],["#terms","Условия"],["#loc","Расположение"]];
   document.querySelectorAll(".snd").forEach(b=>b.addEventListener("click",()=>{const v=b.previousElementSibling; v.muted=!v.muted; if(!v.muted){v.currentTime=0;v.play();} b.textContent=v.muted?"Включить звук":"Выключить звук";}));
   document.getElementById("nav").innerHTML=nav.map(n=>`<a href="${n[0]}">${n[1]}</a>`).join("");
   document.getElementById("hdr-cta").textContent=o.region==="n"?"Узнать цену":"Получить расчёт";
