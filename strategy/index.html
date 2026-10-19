@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Стратегия «Вектор 360»</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1d2622;--head:#16233F;--soft:#55607A;--line:#CCD2DE;--th:#E7EAF0;--bg:#fff}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Golos Text",Arial,sans-serif}
+main{max-width:860px;margin:0 auto;padding:40px 16px 64px}
+h1{font:700 clamp(28px,4vw,38px)/1.15 Manrope,Arial,sans-serif;margin:0 0 8px;color:var(--head)}
+h2{font:700 24px/1.2 Manrope,Arial,sans-serif;margin:40px 0 12px;padding-top:14px;border-top:2px solid var(--head);color:var(--head)}
+h3{font:600 19px/1.25 Manrope,Arial,sans-serif;margin:26px 0 8px}
+h1+p{color:var(--soft);margin-bottom:24px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:4px 0}
+strong{font-weight:600}
+.tw{overflow-x:auto;margin:6px 0 18px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+th{background:var(--th);text-align:left;font-weight:600}
+th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top}
+.bar{display:flex;gap:16px;justify-content:flex-end;font-size:14px;margin-bottom:8px}
+.bar a{color:var(--soft)}
+#err{color:#A12B1F}
+@media print{.bar{display:none}main{max-width:none;padding:0}body{font-size:10.5pt}h2{break-after:avoid}tr{break-inside:avoid}.tw{overflow:visible}table{min-width:0}}
+</style>
+</head>
+<body>
+<main>
+<div class="bar"><a href="#" onclick="print();return false">Сохранить в PDF</a></div>
+<div id="out">Загрузка…</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+// Текст берётся из md-файла в корне репозитория: правим md — страница обновляется после деплоя.
+fetch("../" + encodeURIComponent("Стратегия продвижения агентства недвижимости.md"), {cache: "no-cache"})
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+  .then(md => {
+    const out = document.getElementById("out");
+    out.innerHTML = marked.parse(md);
+    out.querySelectorAll("table").forEach(t => { const w = document.createElement("div"); w.className = "tw"; t.before(w); w.append(t); });
+  })
+  .catch(() => { document.getElementById("out").innerHTML = '<p id="err">Не удалось загрузить стратегию. Обновите страницу.</p>'; });
+</script>
+</body>
+</html>
