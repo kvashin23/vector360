@@ -1,6 +1,6 @@
 (() => {
   // FormToMail public form key. Configure the recipient in its dashboard.
-  const apiKey = "";
+  const apiKey = "QyBcj54FVocDeHPO";
   const escapeHtml = value => value.replace(/[&<>"']/g, character => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   })[character]);
