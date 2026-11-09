@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Вектор 360</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script src="../lead.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
@@ -225,7 +227,7 @@ details p{margin-top:12px;color:var(--soft);max-width:760px}
 .form label>span{display:block;font-size:14px;color:var(--soft);margin-bottom:6px}
 .form input[type=text],.form input[type=tel]{width:100%;font:400 16px var(--text);padding:14px 16px;border-radius:8px;border:1.5px solid var(--line)}
 .consent{display:flex;gap:10px;font-size:13px;color:var(--soft)}
-.form .err{display:none;color:#A12B1F;font-size:14px}
+.form .err{color:#A12B1F;font-size:14px}
 .form .done{display:none}
 .form.sent .fields{display:none}
 .form.sent .done{display:block}
@@ -448,13 +450,14 @@ function leadHTML(o){
    <h2>${n?"Узнать подробнее":"Получите расчёт по лоту"}</h2>
    ${n?`<p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>`:`<p class="l">Перезвоним, подберём апартамент под ваш бюджет и рассчитаем доходность.</p>
    <ul><li>Онлайн-показ комплекса по видеосвязи</li><li>Перезвоним в течение 10 минут</li></ul>`}</div>
-   <form class="form" novalidate><div class="fields">
-     <label><span>Имя</span><input type="text" name="name" autocomplete="name" required></label>
-     <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" required></label>
-     <label class="consent"><input type="checkbox" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#" style="color:inherit">политикой конфиденциальности</a></span></label>
-     <p class="err" role="alert">Укажите имя, телефон и подтвердите согласие.</p>
-     <button class="btn" type="submit">${n?"Узнать подробнее":"Получить расчёт"}</button></div>
-     <div class="done" role="status"><h3>Заявка отправлена</h3><p style="margin-top:8px;color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
+   <form class="form" data-lead-project="${o.name}" method="post" novalidate><div class="fields">
+     <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
+     <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>
+     <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#" style="color:inherit">политикой конфиденциальности</a></span></label>
+     <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
+     <p class="err" role="alert" hidden></p>
+     <button class="btn" type="submit" disabled>${n?"Узнать подробнее":"Получить расчёт"}</button></div>
+     <div class="done" role="status" tabindex="-1"><h3>Заявка отправлена</h3><p style="margin-top:8px;color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
    </form></div></section>`;}
 function projectHref(key){
   if(location.protocol!=="file:") return "/"+key;
@@ -491,7 +494,6 @@ function render(key){
   document.getElementById("ft-legal").innerHTML=`ИП Чернова Елена Евгеньевна, ИНН 344221507488, ОГРНИП 324237500481614<br>Информация на сайте носит справочный характер и не является публичной офертой. Цены — по официальному прайсу застройщика. Доходность и рост стоимости — прогноз застройщика и управляющей компании, не гарантия. Материалы и визуализации предоставлены застройщиком. Проектные декларации размещены на наш.дом.рф.`;
   document.title=`${o.name} — ${o.eyebrow.toLowerCase()} | Вектор 360`;
   if(o.region==="n"){["m-p","m-d","m-t"].forEach(i=>document.getElementById(i).addEventListener("input",calcM));calcM();}
-  document.querySelectorAll(".form").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();const ok=[...f.querySelectorAll("[required]")].every(i=>i.type==="checkbox"?i.checked:i.value.trim().length>1);f.querySelector(".err").style.display=ok?"none":"block";if(ok)f.classList.add("sent");}));
 }
 
 const project=document.body.dataset.project;

@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Квартира у моря в ипотеку под 2% — «Резиденция. Концепт», Мариуполь | Вектор 360</title>
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<script src="../../lead.js" defer></script>
 <meta name="description" content="Кирпичный дом с закрытым двором в центре Мариуполя, рядом Приморский парк и набережная. Ипотека 2% для всех граждан России на весь срок.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -208,7 +210,7 @@ details p{margin-top:12px;color:var(--soft);max-width:760px}
 .form input:focus{border-color:var(--sea);outline:none}
 .consent{display:flex;gap:10px;font-size:13px;color:var(--soft);line-height:1.5}
 .consent input{margin-top:3px;accent-color:var(--sea)}
-.err{display:none;color:#A12B1F;font-size:14px}
+.err{color:#A12B1F;font-size:14px}
 .form .btn{width:100%}
 .done{display:none;text-align:center;padding:28px 0}
 .done h3{font:800 28px/1.2 var(--sans);margin-bottom:10px}
@@ -461,15 +463,16 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
       <h2>Узнать подробнее</h2>
       <p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>
     </div>
-    <form class="form" novalidate>
+    <form class="form" data-lead-project="Резиденция. Концепт" method="post" novalidate>
       <div class="fields">
-        <label><span>Имя</span><input type="text" name="name" autocomplete="name" required></label>
-        <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" required></label>
-        <label class="consent"><input type="checkbox" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#">политикой конфиденциальности</a></span></label>
-        <p class="err" role="alert">Укажите имя, телефон и подтвердите согласие.</p>
-        <button class="btn btn-sun" type="submit">Узнать подробнее</button>
+        <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
+        <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>
+        <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#">политикой конфиденциальности</a></span></label>
+        <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
+        <p class="err" role="alert" hidden></p>
+        <button class="btn btn-sun" type="submit" disabled>Узнать подробнее</button>
       </div>
-      <div class="done" role="status"><h3>Заявка отправлена</h3><p style="color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
+      <div class="done" role="status" tabindex="-1"><h3>Заявка отправлена</h3><p style="color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
     </form>
   </div>
 </section>
@@ -510,7 +513,6 @@ function calcM(){
   document.getElementById("m-warn").hidden=!cap;
 }
 ["m-p","m-d","m-t"].forEach(i=>document.getElementById(i).addEventListener("input",calcM)); calcM();
-document.querySelectorAll(".form").forEach(f=>f.addEventListener("submit",e=>{e.preventDefault();const ok=[...f.querySelectorAll("[required]")].every(i=>i.type==="checkbox"?i.checked:i.value.trim().length>1);f.querySelector(".err").style.display=ok?"none":"block";if(ok)f.classList.add("sent");}));
 </script>
 </body>
 </html>
