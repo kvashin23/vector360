@@ -266,6 +266,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
 .mbar.hide{transform:translateY(140%)}
 @media (max-width:860px){.mbar{display:flex}}
 </style>
+<link rel="stylesheet" href="../../inquiry.css">
 </head>
 <body>
 <!-- Yandex.Metrika counter -->
@@ -288,7 +289,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
       <a href="#about">О комплексе</a><a href="#invest">Доходность</a><a href="#manage">Управление</a><a href="#terms">Условия</a><a href="#loc">Расположение</a>
     </nav>
     <a class="phone" href="tel:88005503654">8 800 550-36-54</a>
-    <a class="btn btn-copper" href="#lead">Получить расчёт</a>
+    <a class="btn btn-copper" href="#lead" data-estimate>Получить расчёт</a>
   </div>
 </header>
 
@@ -301,7 +302,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
     <p class="lede">Строящийся апартаментный комплекс у аэропорта Горно-Алтайска на Чуйском тракте. Ключевое отличие от большинства проектов в регионе — он рассчитан на круглогодичный спрос. Пока объект строится, вы покупаете по минимальной цене. После сдачи — получаете актив, который работает круглый год.</p>
     <div class="price"><b>от 14,98 млн ₽</b><span>Базовая цена застройщика. При 100% оплате возможна скидка, стоимость зависит от формы оплаты.</span></div>
     <div class="ctas">
-      <a class="btn btn-copper" href="#lead">Получить расчёт по лоту</a>
+      <a class="btn btn-copper" href="#lead" data-estimate>Получить расчёт по лоту</a>
       <a class="btn btn-ghost" href="#lead">Записаться на онлайн-показ</a>
     </div>
     <div class="kpis">
@@ -353,7 +354,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
   <div class="wrap">
     <div class="head">
       <div><span class="kicker">Инфраструктура</span><h2>Всё для гостей — в любой сезон</h2></div>
-      <p>Комплекс специализируется на деловом и круглогодичном туризме, поэтому гостям есть чем заняться в любой сезон.</p>
+      <p>В гостиничном корпусе на 116 номеров запроектированы ресторан, спа-комплекс и тренажёрный зал. Для работы предусмотрены коворкинг и конференц-зал. На первой линии разместится торговая галерея: под коммерческие помещения отведено 2 712 м². В подземном паркинге предусмотрено 75 машино-мест.</p>
     </div>
     <div class="infra">
       <figure><img src="../assets/karluu-rest.jpg" alt="Ресторан" loading="lazy"><figcaption>Ресторан</figcaption></figure>
@@ -361,7 +362,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
       <figure><img src="../assets/karluu-gym.jpg" alt="Тренажёрный зал" loading="lazy"><figcaption>Тренажёрный зал</figcaption></figure>
       <figure><img src="../assets/karluu-conf.jpg" alt="Конференц-зал" loading="lazy"><figcaption>Конференц-зал и коворкинг</figcaption></figure>
     </div>
-    <p class="note infra-note">На первой линии — кофейня, магазины и подземный паркинг. Визуализации застройщика.</p>
+    <p class="note infra-note">Визуализации застройщика.</p>
   </div>
 </section>
 
@@ -504,7 +505,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
       <p>Комплекс стоит у Чуйского тракта — главной дороги Горного Алтая, рядом с аэропортом.</p>
     </div>
     <div class="loc">
-      <div class="loc-img"><img src="../assets/karluu-plan.jpg" alt="Генплан комплекса: корпуса апартаментов, гостиница, ритейл и паркинг у Чуйского тракта и аэропорта" loading="lazy"></div>
+      <a class="loc-img plan-link" href="../assets/karluu-plan.jpg" target="_blank" rel="noopener"><img src="../assets/karluu-plan.jpg" alt="Генплан комплекса: корпуса апартаментов, гостиница, ритейл и паркинг у Чуйского тракта и аэропорта" loading="lazy"><span>Увеличить генплан</span></a>
       <ul>
         <li><span>Международный аэропорт Горно-Алтайска</span><b>5 минут, есть пешеходная дорога</b></li>
         <li><span>Транзитный поток локации</span><b>более 4 млн человек в год</b></li>
@@ -566,14 +567,14 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
     <div>
       <span class="kicker">Заявка</span>
       <h2>Получите расчёт по лоту</h2>
-      <p class="l">Перезвоним, подберём апартамент под ваш бюджет и рассчитаем доходность.</p>
-      <ul><li>Онлайн-показ комплекса по видеосвязи</li><li>Перезвоним в течение 10 минут</li></ul>
+      <p class="l">Оставьте почту для индивидуального расчёта. После заявки можно скачать пример для апартамента 31,52 м².</p>
+
     </div>
     <form class="form" data-lead-project="Карлуу" method="post" novalidate>
       <div class="fields">
         <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
-        <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>
-        <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#">политикой конфиденциальности</a></span></label>
+        <label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>
+        <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
         <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
         <p class="err" role="alert" hidden></p>
         <button class="btn btn-copper" type="submit" disabled>Получить расчёт</button>
@@ -589,13 +590,13 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
     <div class="cols">
       <div><svg class="logo" viewBox="0 0 536.7 102.3" role="img" aria-label="Вектор 360"><use href="#logo-classic"/></svg><p style="margin-top:14px">Партнёр застройщика «Мой Дом». Работаем по агентскому договору.</p></div>
       <div><b>Контакты</b><p style="margin-top:10px"><a href="tel:88005503654">8 800 550-36-54</a><br><a href="mailto:info@vector-360.ru">info@vector-360.ru</a><br>Ежедневно с 9:00 до 21:00 мск</p></div>
-      <div><b>Документы</b><p style="margin-top:10px"><a href="https://xn--80az8a.xn--d1aqf.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B/%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3-%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA/%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82/64362" target="_blank" rel="noopener">Проектная декларация на наш.дом.рф</a><br>Политика конфиденциальности</p></div>
+      <div><b>Документы</b><p style="margin-top:10px"><a href="https://xn--80az8a.xn--d1aqf.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B/%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3-%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA/%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82/64362" target="_blank" rel="noopener">Проектная декларация на наш.дом.рф</a><br><a href="/privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a></p></div>
     </div>
     <div class="legal">ИП Чернова Елена Евгеньевна, ИНН 344221507488, ОГРНИП 324237500481614<br>Информация на сайте носит справочный характер и не является публичной офертой. Цены — по официальному прайсу застройщика. Доходность и рост стоимости — прогноз застройщика и управляющей компании, не гарантия. Материалы и визуализации предоставлены застройщиком. Проектная декларация размещена на наш.дом.рф.</div>
   </div>
 </footer>
 
-<div class="mbar hide" id="mbar"><a class="btn call" href="tel:88005503654">Позвонить</a><a class="btn btn-copper" href="#lead">Получить расчёт</a></div>
+<div class="mbar hide" id="mbar"><a class="btn call" href="tel:88005503654">Позвонить</a><a class="btn btn-copper" href="#lead" data-estimate>Получить расчёт</a></div>
 
 <script>
 const hdr=document.getElementById("hdr"), mbar=document.getElementById("mbar"), lead=document.getElementById("lead");

@@ -1,6 +1,7 @@
 # Клиентские материалы — не публикуем
 Правки*
 *.pdf
+!/files/karluu-example.pdf
 IMG_*.MP4
 photo_*.jpg
 .claude/

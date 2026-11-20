@@ -14,9 +14,9 @@ module.exports = function renderPage(key, IMG, VID) {
     stats:{title:"О «Карлуу» в цифрах",text:"Три линии малоэтажной застройки: торговая галерея с подземным паркингом, гостиница и четыре корпуса апартаментов с благоустроенной территорией.",
      nums:[["250","апартаментов бизнес-класса"],["116","номеров в гостиничном корпусе"],["4*","категория апартаментов"],["2 712 м²","коммерческих помещений"],["75","машино-мест в подземном паркинге"]],
      items:[["5 минут до аэропорта","Международный аэропорт Горно-Алтайска рядом: комплекс удобен и туристам, и деловым гостям"],["Отдых и работа на одной территории","Торговая галерея, гостиница с рестораном, спа и фитнесом, конференц-зал и коворкинг"],["Интересное рядом","30 минут до Бирюзовой Катуни, Манжерока и «Сибирской монеты» — известных курортных мест Горного Алтая"]]},
-    infra:{title:"Инфраструктура комплекса",text:"Комплекс специализируется на деловом и круглогодичном туризме, поэтому гостям есть чем заняться в любой сезон.",
+    infra:{title:"Инфраструктура комплекса",text:"В гостиничном корпусе на 116 номеров запроектированы ресторан, спа-комплекс и тренажёрный зал. Для работы предусмотрены коворкинг и конференц-зал. На первой линии разместится торговая галерея: под коммерческие помещения отведено 2 712 м². В подземном паркинге предусмотрено 75 машино-мест.",
      items:[["k_rest","Ресторан"],["k_spa","Спа-комплекс"],["k_gym","Тренажёрный зал"],["k_conf","Конференц-зал и коворкинг"]],
-     note:"На первой линии — кофейня, магазины и подземный паркинг. Визуализации застройщика."},
+     note:"Визуализации застройщика."},
     finish:{title:"Апартаменты под ключ",img:"k_interior",alt:"Интерьер апартамента с кухней и спальным местом",text:"Апартаменты сдаются с полной отделкой, мебелью и техникой: после сдачи их можно сразу передать в управление. В отделке — дерево, камень и текстиль.",
      list:["Студии и двухкомнатные апартаменты от 31 до 58,6 м²","Сдача — II квартал 2028 года","Монолит-кирпич, 3 этажа","Сдачу в аренду и обслуживание берёт на себя оператор UTROM"]},
     kpis:[["13%","прогноз доходности от аренды"],["80 000 ₽","фиксированный доход в месяц по программе «Старт»"],["до 20%","прогноз роста стоимости в год"]],
@@ -63,8 +63,8 @@ module.exports = function renderPage(key, IMG, VID) {
      <p class="lede">${o.lede}</p>
      ${o.price?`<div class="price"><span>${o.priceLabel}</span>${o.price}<small class="pnote">${o.priceNote||""}</small></div>`:""}
      <div class="ctas">
-       <a class="btn btn-main" href="#lead">${o.price?"Получить расчёт по лоту":"Узнать актуальную цену"}</a>
-       <a class="btn btn-line" href="#lead">${o.region==="n"?"Рассчитать ипотеку":"Записаться на онлайн-показ"}</a>
+       <a class="btn btn-main" href="#lead" ${o.price?"data-estimate":""}>${o.price?"Получить расчёт по лоту":"Узнать актуальную цену"}</a>
+       <a class="btn btn-line" href="${o.region==="n"?"#invest":"#lead"}">${o.region==="n"?"Рассчитать ипотеку":"Записаться на онлайн-показ"}</a>
      </div>
      <div class="kpis">${o.kpis.map(k=>`<div><strong>${k[0]}</strong><span>${k[1]}</span></div>`).join("")}</div>
      <p class="src-note">${o.kpiSrc}</p>
@@ -132,7 +132,7 @@ module.exports = function renderPage(key, IMG, VID) {
     <div class="grid4"><div class="card"><h3 style="font-size:28px">25 млрд ₽</h3><p>инвестиций в кластер</p></div><div class="card"><h3 style="font-size:28px">10 000</h3><p>подростков в год примет круглогодичный лагерь</p></div><div class="card"><h3 style="font-size:28px">120 тыс. м²</h3><p>жилья для сотрудников туристической отрасли</p></div><div class="card"><h3 style="font-size:28px">550 и 330</h3><p>мест в новой школе и детском саду</p></div></div>
     <p class="disc">По данным презентации проекта «Крепче стали».</p></div></section>`;}
   function locHTML(o){ const l=o.loc; if(!l) return "";
-    return `<section class="section" id="loc" style="padding-top:0"><div class="wrap"><div class="head"><h2>Расположение</h2></div><div class="loc"><img loading="lazy" src="${IMG[l.img]}" alt="Расположение объекта"><ul>${l.items.map(i=>`<li><span>${i[0]}</span><b>${i[1]}</b></li>`).join("")}</ul></div></div></section>`;}
+    return `<section class="section" id="loc" style="padding-top:0"><div class="wrap"><div class="head"><h2>Расположение</h2></div><div class="loc"><a class="plan-link" href="${o.region==="n"?IMG[l.img]:"/design/assets/karluu-plan.jpg"}" target="_blank" rel="noopener"><img loading="lazy" src="${IMG[l.img]}" alt="Расположение объекта"><span>${o.region==="n"?"Увеличить карту":"Увеличить генплан"}</span></a><ul>${l.items.map(i=>`<li><span>${i[0]}</span><b>${i[1]}</b></li>`).join("")}</ul></div></div></section>`;}
   function statsHTML(o){const k=o.stats; if(!k) return "";
     return `<section class="section" id="stock"><div class="wrap"><div class="head"><h2>${k.title}</h2><p>${k.text}</p></div>
     <div class="nums">${k.nums.map(n=>`<div><strong>${n[0]}</strong><span>${n[1]}</span></div>`).join("")}</div>
@@ -168,12 +168,12 @@ module.exports = function renderPage(key, IMG, VID) {
     const n=o.region==="n";
     return `<section class="section lead" id="lead"><div class="wrap lead-box"><div>
      <h2>${n?"Узнать подробнее":"Получите расчёт по лоту"}</h2>
-     ${n?`<p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>`:`<p class="l">Перезвоним, подберём апартамент под ваш бюджет и рассчитаем доходность.</p>
-     <ul><li>Онлайн-показ комплекса по видеосвязи</li><li>Перезвоним в течение 10 минут</li></ul>`}</div>
+     ${n?`<p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>`:`<p class="l">Оставьте почту для индивидуального расчёта. После заявки можно скачать пример для апартамента 31,52 м².</p>
+     `}</div>
      <form class="form" data-lead-project="${o.name}" method="post" novalidate><div class="fields">
        <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
-       <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>
-       <label class="consent"><input type="checkbox" name="consent" required> <span>Согласен на обработку персональных данных в соответствии с <a href="#" style="color:inherit">политикой конфиденциальности</a></span></label>
+       ${n?'<label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>':'<label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>'}
+       <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
        <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
        <p class="err" role="alert" hidden></p>
        <button class="btn" type="submit" disabled>${n?"Узнать подробнее":"Получить расчёт"}</button></div>
@@ -191,7 +191,7 @@ module.exports = function renderPage(key, IMG, VID) {
   const nav=o.region==="n"?[["#invest","Ипотека 2%"],["#about","О доме"],["#layouts","Планировки"],["#city","Город"],["#loc","Расположение"]]:[["#stock","О комплексе"],["#invest","Доходность"],["#manage","Управление"],["#terms","Условия"],["#loc","Расположение"]];
   const navigation = nav.map(n=>`<a href="${n[0]}">${n[1]}</a>`).join("");
   return {
-    main, navigation,
+    main, navigation, estimate: key === "karluu" ? "data-estimate" : "",
     title: `${o.name} — ${o.eyebrow.toLowerCase()} | Вектор 360`,
     cta: o.region === "n" ? "Узнать цену" : "Получить расчёт",
     partner: `Партнёр застройщика ${o.dev}. Работаем по агентскому договору.`,
