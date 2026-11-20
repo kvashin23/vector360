@@ -1,0 +1,16 @@
+.head {display:grid;grid-template-columns:1fr;align-items:start;gap:12px}
+.head p {max-width:none}
+.plan-link {display:block;color:inherit;cursor:zoom-in}
+.plan-link span {display:block;padding:8px 0;font-weight:600;text-decoration:underline}
+.inquiry-dialog {border:0;border-radius:20px;width:min(440px,calc(100% - 28px));max-height:90dvh;overflow:auto;padding:28px;margin:auto;color:var(--ink,#17253a);background:#fff}
+.inquiry-dialog::backdrop {background:rgba(12,23,38,.7)}
+.inquiry-dialog h2 {font:600 clamp(22px,4vw,30px)/1.2 var(--display,Arial),sans-serif;padding-right:26px;margin:0 0 18px}
+.inquiry-dialog .form {padding:0;box-shadow:none;background:#fff;color:inherit}
+.dialog-close {position:absolute;right:9px;top:8px;width:40px;height:40px;font:28px/1 Arial;cursor:pointer;border:0;background:transparent;color:inherit}
+.form input[type=email] {width:100%;font:inherit;padding:14px 16px;border:1.5px solid var(--line,#acb7bf);border-radius:8px}
+.plan-dialog {margin:auto;padding:14px;border:0;border-radius:14px;width:min(95vw,1400px);max-height:95dvh;overflow:auto;background:white;color:#19283d}
+.plan-dialog::backdrop {background:rgba(12,23,38,.8)}
+.plan-dialog img {display:block;width:100%;max-height:74dvh;object-fit:contain;margin:8px 0}
+.plan-dialog form {text-align:right}
+.plan-dialog button,.plan-dialog a {font:inherit;color:inherit;cursor:pointer}
+.plan-dialog button {background:white;padding:6px 12px;border:1px solid #adb6bf;border-radius:8px}
