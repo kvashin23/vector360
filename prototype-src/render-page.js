@@ -173,10 +173,10 @@ module.exports = function renderPage(key, IMG, VID) {
      <form class="form" data-lead-project="${o.name}" method="post" novalidate><div class="fields">
        <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
        ${n?'<label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>':'<label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>'}
-       <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
+       <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a data-consent-document href="/files/${n?"consent-viewing":"consent-estimate"}.pdf" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/files/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
        <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
        <p class="err" role="alert" hidden></p>
-       <button class="btn" type="submit" disabled>${n?"Узнать подробнее":"Получить расчёт"}</button></div>
+       <button class="btn" type="submit" disabled>${n?"Отправить заявку":"Запросить расчёт на почту"}</button></div>
        <div class="done" role="status" tabindex="-1"><h3>Заявка отправлена</h3><p style="margin-top:8px;color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
      </form></div></section>`;}
 

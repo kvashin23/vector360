@@ -267,6 +267,8 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
 @media (max-width:860px){.mbar{display:flex}}
 </style>
 <link rel="stylesheet" href="../../inquiry.css">
+<link rel="stylesheet" href="../../cookie-notice.css">
+<script defer src="../../cookie-notice.js"></script>
 </head>
 <body>
 <!-- Yandex.Metrika counter -->
@@ -574,10 +576,10 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
       <div class="fields">
         <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
         <label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>
-        <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a href="/consent/" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
+        <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a data-consent-document href="/files/consent-estimate.pdf" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/files/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
         <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
         <p class="err" role="alert" hidden></p>
-        <button class="btn btn-copper" type="submit" disabled>Получить расчёт</button>
+        <button class="btn btn-copper" type="submit" disabled>Запросить расчёт на почту</button>
       </div>
       <div class="done" role="status" tabindex="-1"><h3>Заявка отправлена</h3><p style="color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
     </form>
@@ -590,7 +592,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
     <div class="cols">
       <div><svg class="logo" viewBox="0 0 536.7 102.3" role="img" aria-label="Вектор 360"><use href="#logo-classic"/></svg><p style="margin-top:14px">Партнёр застройщика «Мой Дом». Работаем по агентскому договору.</p></div>
       <div><b>Контакты</b><p style="margin-top:10px"><a href="tel:88005503654">8 800 550-36-54</a><br><a href="mailto:info@vector-360.ru">info@vector-360.ru</a><br>Ежедневно с 9:00 до 21:00 мск</p></div>
-      <div><b>Документы</b><p style="margin-top:10px"><a href="https://xn--80az8a.xn--d1aqf.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B/%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3-%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA/%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82/64362" target="_blank" rel="noopener">Проектная декларация на наш.дом.рф</a><br><a href="/privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a></p></div>
+      <div><b>Документы</b><p style="margin-top:10px"><a href="https://xn--80az8a.xn--d1aqf.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B/%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3-%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA/%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82/64362" target="_blank" rel="noopener">Проектная декларация на наш.дом.рф</a><br><a href="/files/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a></p></div>
     </div>
     <div class="legal">ИП Чернова Елена Евгеньевна, ИНН 344221507488, ОГРНИП 324237500481614<br>Информация на сайте носит справочный характер и не является публичной офертой. Цены — по официальному прайсу застройщика. Доходность и рост стоимости — прогноз застройщика и управляющей компании, не гарантия. Материалы и визуализации предоставлены застройщиком. Проектная декларация размещена на наш.дом.рф.</div>
   </div>
