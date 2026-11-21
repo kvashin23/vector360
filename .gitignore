@@ -2,6 +2,9 @@
 Правки*
 *.pdf
 !/files/karluu-example.pdf
+!/files/privacy-policy.pdf
+!/files/consent-estimate.pdf
+!/files/consent-viewing.pdf
 IMG_*.MP4
 photo_*.jpg
 .claude/

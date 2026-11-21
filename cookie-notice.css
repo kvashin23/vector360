@@ -1,0 +1,11 @@
+.cookie-notice {
+  position: fixed; z-index: 100; bottom: max(16px, env(safe-area-inset-bottom)); right: 16px;
+  box-sizing: border-box; width: min(450px, calc(100% - 32px)); padding: 18px 22px;
+  color: #19283d; background: #fff; border: 1px solid #cbd3dc; border-radius: 14px;
+  box-shadow: 0 4px 24px #19283d26; font: 15px/1.5 system-ui, sans-serif;
+}
+.cookie-notice p { margin: 0 0 12px; color: inherit; font: inherit }
+.cookie-notice div { display: flex; align-items: center; gap: 18px }
+.cookie-notice button { padding: 9px 18px; border: 0; border-radius: 8px; background: #233653; color: white; font: inherit; cursor: pointer }
+.cookie-notice a { color: #233653; text-decoration: underline; font: inherit }
+@media print { .cookie-notice { display: none } }

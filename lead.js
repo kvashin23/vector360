@@ -58,7 +58,7 @@
           },
           body: JSON.stringify({
             title: project + " — " + purpose,
-            body: { "Объект": project, "Запрос": escapeHtml(purpose), "Имя": escapeHtml(name), ...contact, "Согласие": "Получено, редакция 20.11.2026" },
+            body: { "Объект": project, "Запрос": escapeHtml(purpose), "Имя": escapeHtml(name), ...contact, "Согласие": form.querySelector("[data-consent-document]").href },
             honeypot: fields.namedItem("company_website").value
           }),
           signal: AbortSignal.timeout(12000)
@@ -144,6 +144,7 @@
         email.placeholder = "+7";
         email.maxLength = 32;
         email.closest("label").querySelector("span").textContent = "Телефон";
+        form.querySelector("[data-consent-document]").href = "/files/consent-viewing.pdf";
       }
       form.querySelector("button[type=submit]").textContent = link.hasAttribute("data-estimate") ? "Запросить расчёт на почту" : "Отправить заявку";
       dialog.append(form);
