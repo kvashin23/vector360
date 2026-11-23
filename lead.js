@@ -5,7 +5,21 @@
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   })[character]);
 
-  function bindForm(form) {
+  function reachGoal(goal) {
+    if (goal && typeof window.ym === "function") {
+      try {
+        window.ym(114577757, "reachGoal", goal);
+      } catch {
+        // Analytics must never interrupt a lead submission or a phone call.
+      }
+    }
+  }
+
+  document.addEventListener("click", event => {
+    if (event.target.closest?.('a[href^="tel:"]')) reachGoal("phone_click");
+  });
+
+  function bindForm(form, submitGoal) {
     const button = form.querySelector("button[type=submit]");
     const error = form.querySelector(".err");
     const buttonText = button.textContent;
@@ -79,6 +93,7 @@
         }
         form.reset();
         form.classList.add("sent");
+        reachGoal(submitGoal);
         form.querySelector(".done").focus();
       } catch {
         showError("Не удалось отправить заявку. Попробуйте ещё раз.", true);
@@ -92,7 +107,7 @@
   const original = document.querySelector("form[data-lead-project]");
   if (!original) return;
   const template = original.cloneNode(true);
-  bindForm(original);
+  bindForm(original, original.dataset.submitGoal);
 
   document.querySelectorAll(".plan-link").forEach(link => {
     const viewer = document.createElement("dialog");
@@ -135,9 +150,10 @@
       dialog.querySelector("h2").textContent = purpose;
       dialog.querySelector("form")?.remove();
       const form = template.cloneNode(true);
+      const isEstimate = link.hasAttribute("data-estimate");
       form.dataset.purpose = purpose;
       const email = form.elements.namedItem("email");
-      if (email && !link.hasAttribute("data-estimate")) {
+      if (email && !isEstimate) {
         email.type = "tel";
         email.name = "phone";
         email.autocomplete = "tel";
@@ -146,10 +162,11 @@
         email.closest("label").querySelector("span").textContent = "Телефон";
         form.querySelector("[data-consent-document]").href = "/files/consent-viewing.pdf";
       }
-      form.querySelector("button[type=submit]").textContent = link.hasAttribute("data-estimate") ? "Запросить расчёт на почту" : "Отправить заявку";
+      form.querySelector("button[type=submit]").textContent = isEstimate ? "Запросить расчёт на почту" : "Отправить заявку";
       dialog.append(form);
-      bindForm(form);
+      bindForm(form, isEstimate ? "estimate_popup_submit" : link.dataset.submitGoal);
       dialog.showModal();
+      if (isEstimate) reachGoal("estimate_popup_open");
       form.elements.namedItem("name").focus();
     });
   });

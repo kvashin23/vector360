@@ -64,7 +64,7 @@ module.exports = function renderPage(key, IMG, VID) {
      ${o.price?`<div class="price"><span>${o.priceLabel}</span>${o.price}<small class="pnote">${o.priceNote||""}</small></div>`:""}
      <div class="ctas">
        <a class="btn btn-main" href="#lead" ${o.price?"data-estimate":""}>${o.price?"Получить расчёт по лоту":"Узнать актуальную цену"}</a>
-       <a class="btn btn-line" href="${o.region==="n"?"#invest":"#lead"}">${o.region==="n"?"Рассчитать ипотеку":"Записаться на онлайн-показ"}</a>
+       <a class="btn btn-line" href="${o.region==="n"?"#invest":"#lead"}"${o.region==="n"?"":' data-submit-goal="viewing_popup_submit"'}>${o.region==="n"?"Рассчитать ипотеку":"Записаться на онлайн-показ"}</a>
      </div>
      <div class="kpis">${o.kpis.map(k=>`<div><strong>${k[0]}</strong><span>${k[1]}</span></div>`).join("")}</div>
      <p class="src-note">${o.kpiSrc}</p>
@@ -147,7 +147,7 @@ module.exports = function renderPage(key, IMG, VID) {
       return `<section class="section" id="video"><div class="wrap promo"><video class="vvert" controls playsinline preload="none" poster="${IMG[p.vid+"_poster"]}"><source src="${VID[p.vid]}" type="video/mp4"></video>
       <div><h2 style="margin-bottom:20px">${p.title}</h2>${p.text.map(t=>`<p class="ptext">${t}</p>`).join("")}<a class="btn btn-main" href="#lead" style="margin-top:12px">Узнать актуальную цену</a></div></div></section>`;}
     if(o.show){const s=o.show;
-      return `<section class="section" id="video" style="padding-top:0"><div class="wrap" id="online-show"><div class="loc"><img loading="lazy" src="${IMG[s.img]}" alt="Двор комплекса с зеленью и зонами отдыха"><div><h2 style="margin-bottom:18px">${s.title}</h2><p style="color:var(--soft)">${s.text}</p><p style="margin-top:14px;font-weight:600">${s.note}</p><a class="btn btn-main" href="#lead" style="margin-top:24px">Записаться на онлайн-показ</a></div></div></div></section>`;}
+      return `<section class="section" id="video" style="padding-top:0"><div class="wrap" id="online-show"><div class="loc"><img loading="lazy" src="${IMG[s.img]}" alt="Двор комплекса с зеленью и зонами отдыха"><div><h2 style="margin-bottom:18px">${s.title}</h2><p style="color:var(--soft)">${s.text}</p><p style="margin-top:14px;font-weight:600">${s.note}</p><a class="btn btn-main" href="#lead" data-submit-goal="viewing_popup_submit" style="margin-top:24px">Записаться на онлайн-показ</a></div></div></div></section>`;}
     return "";}
   function cityHTML(o){const c=o.city; if(!c) return "";
     return `<section class="section" id="city" style="padding-top:0"><div class="wrap"><div class="loc"><video class="vplayer" style="aspect-ratio:13/10" controls playsinline preload="none" poster="${IMG[c.vid+"_poster"]}"><source src="${VID[c.vid]}" type="video/mp4"></video>
@@ -170,7 +170,7 @@ module.exports = function renderPage(key, IMG, VID) {
      <h2>${n?"Узнать подробнее":"Получите расчёт по лоту"}</h2>
      ${n?`<p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>`:`<p class="l">Оставьте почту для индивидуального расчёта. После заявки можно скачать пример для апартамента 31,52 м².</p>
      `}</div>
-     <form class="form" data-lead-project="${o.name}" method="post" novalidate><div class="fields">
+     <form class="form" data-lead-project="${o.name}"${n?"":' data-submit-goal="estimate_inline_submit"'} method="post" novalidate><div class="fields">
        <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
        ${n?'<label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>':'<label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>'}
        <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a data-consent-document href="/files/${n?"consent-viewing":"consent-estimate"}.pdf" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/files/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
