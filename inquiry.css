@@ -14,3 +14,35 @@
 .plan-dialog form {text-align:right}
 .plan-dialog button,.plan-dialog a {font:inherit;color:inherit;cursor:pointer}
 .plan-dialog button {background:white;padding:6px 12px;border:1px solid #adb6bf;border-radius:8px}
+
+body[data-theme="mariupol"] {
+  --sand-panel: #eee6d9;
+  --sand-card: #fffdf8;
+  --bronze: #77521d;
+}
+[data-theme="mariupol"] :is(#invest, .lead) {background:var(--sand-panel);color:var(--ink)}
+[data-theme="mariupol"] :is(#invest .head p, #invest .disc, .lead .kicker, #invest .kicker) {color:var(--soft)}
+[data-theme="mariupol"] :is(.facts4, .mout .row) {border-color:var(--line)}
+[data-theme="mariupol"] .mout {background:var(--sand-card);border:1px solid var(--line)}
+[data-theme="mariupol"] .mout .big {color:var(--bronze)}
+[data-theme="mariupol"] .head {display:grid;grid-template-columns:1fr;justify-items:start;gap:12px}
+[data-theme="mariupol"] .head p {max-width:70ch}
+[data-theme="mariupol"] .steps {gap:16px;border:0}
+[data-theme="mariupol"] .steps li {
+  background:var(--sand-card);border:1px solid var(--line);border-top:3px solid #ceaa70;
+  border-radius:16px;padding:24px;
+}
+body[data-theme="mariupol"] .steps li::before {
+  display:inline-grid;place-items:center;width:40px;height:40px;margin-bottom:16px;
+  border-radius:50%;background:var(--sand-panel);color:var(--bronze);font-size:21px;
+}
+[data-theme="mariupol"] #loc ul {padding:4px clamp(16px,3vw,32px);background:var(--sand-card);border:1px solid var(--line);border-radius:18px}
+[data-theme="mariupol"] #loc li {align-items:center}
+[data-theme="mariupol"] #loc li:last-child {border-bottom:0}
+[data-theme="mariupol"] #loc li b {padding:4px 12px;border-radius:24px;background:var(--sand-panel);color:var(--bronze);white-space:nowrap;font-size:15px}
+[data-theme="mariupol"] .cookie-notice {border-color:var(--line);color:var(--ink)}
+[data-theme="mariupol"] .cookie-notice button {background:var(--sand-panel);color:var(--ink)}
+[data-theme="mariupol"] .cookie-notice a {color:var(--bronze)}
+@media (max-width:600px) {
+  [data-theme="mariupol"] .steps {grid-template-columns:1fr}
+}

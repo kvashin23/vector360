@@ -13,8 +13,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --deep:#0B3A55;--deep-2:#0F4C6E;--sea:#12698C;--aqua:#5FB4CF;--foam:#EAF4F7;--sand:#F7EFE2;--bg:#F6FAFB;--paper:#FFFFFF;
-  --sun:#F0A236;--sun-2:#F6B65A;--ink:#0F2738;--soft:#4E6576;--line:#D6E4EA;--r:24px;
+  --deep:#504335;--deep-2:#594937;--sea:#80591e;--aqua:#ad8750;--foam:#f1ebe2;--sand:#F7EFE2;--bg:#faf8f4;--paper:#FFFFFF;
+  --sun:#F0A236;--sun-2:#F6B65A;--ink:#322b24;--soft:#625a51;--line:#dcd3c5;--r:24px;
   --sans:"Manrope","Segoe UI",Arial,sans-serif;
 }
 *{box-sizing:border-box;font-variant-numeric:lining-nums}
@@ -56,7 +56,7 @@ p{margin:0}
 .nav a:hover{opacity:1}
 .phone{font-weight:800;text-decoration:none;white-space:nowrap}
 .header .btn{padding:12px 20px;font-size:14px}
-.header.solid{background:rgba(246,250,251,.94);backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.header.solid{background:rgba(250,248,244,.94);backdrop-filter:blur(10px);color:var(--ink);box-shadow:0 1px 0 var(--line)}
 .header.solid .logo{color:var(--ink);--logo-gold:#AE9468}
 @media (max-width:1120px){.nav{display:none}.phone{margin-left:auto}}
 @media (max-width:640px){.header .wrap{height:60px}.header .btn{display:none}.phone{font-size:16px}}
@@ -64,9 +64,9 @@ p{margin:0}
 /* hero */
 .hero{position:relative;min-height:max(720px,min(100svh,980px));display:flex;flex-direction:column;color:#fff;background:var(--deep);overflow:hidden}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,rgba(6,34,52,.9) 0%,rgba(6,34,52,.72) 42%,rgba(6,34,52,.15) 80%),linear-gradient(0deg,rgba(6,34,52,.55),transparent 45%),linear-gradient(180deg,rgba(6,34,52,.5),transparent 22%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(95deg,rgba(39,31,23,.9) 0%,rgba(39,31,23,.72) 42%,rgba(39,31,23,.15) 80%),linear-gradient(0deg,rgba(39,31,23,.55),transparent 45%),linear-gradient(180deg,rgba(39,31,23,.5),transparent 22%)}
 .hero .wrap{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:130px;padding-bottom:140px;width:100%}
-.hero .kicker{color:#BFE3EF}
+.hero .kicker{color:#edcc98}
 .hero .kicker::before{filter:brightness(3)}
 .hero h1{font:800 clamp(42px,6.2vw,84px)/1.02 var(--sans);letter-spacing:-.035em;max-width:900px;margin:22px 0 24px}
 .hero h1 em{font-style:normal;color:var(--sun-2)}
@@ -85,17 +85,17 @@ p{margin:0}
 /* promo */
 .promo-sec{background:var(--sand)}
 .promo{display:grid;grid-template-columns:360px 1fr;gap:72px;align-items:center}
-.phone-frame{position:relative;border-radius:40px;padding:10px;background:#fff;box-shadow:0 30px 60px rgba(11,58,85,.18)}
+.phone-frame{position:relative;border-radius:40px;padding:10px;background:#fff;box-shadow:0 30px 60px rgba(62,54,44,.18)}
 .phone-frame video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:30px;background:#000}
 .snd{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);white-space:nowrap;font:700 13px/1 var(--sans);padding:10px 16px;border-radius:999px;border:0;background:rgba(255,255,255,.92);color:var(--ink);cursor:pointer}
 .promo h2{margin:16px 0 24px}
-.promo .ptext{font:500 21px/1.5 var(--sans);margin-bottom:16px;color:#26404F}
+.promo .ptext{font:500 21px/1.5 var(--sans);margin-bottom:16px;color:var(--ink)}
 .promo .ptext b{color:var(--sea)}
 @media (max-width:900px){.promo{grid-template-columns:1fr;gap:40px}.phone-frame{max-width:300px;margin:0 auto}}
 
 /* mortgage */
 .deep{background:var(--deep);color:#fff;position:relative}
-.deep .kicker{color:#BFE3EF}
+.deep .kicker{color:#edcc98}
 .deep .head p{color:rgba(255,255,255,.75)}
 .wave-in{color:var(--sand);background:var(--deep)}
 .wave-out{color:var(--bg);background:var(--deep);transform:scaleY(-1)}
@@ -201,7 +201,7 @@ details p{margin-top:12px;color:var(--soft);max-width:760px}
 /* lead */
 .lead{background:var(--deep);color:#fff}
 .lead .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding-top:80px;padding-bottom:110px}
-.lead .kicker{color:#BFE3EF}
+.lead .kicker{color:#edcc98}
 .lead h2{margin:16px 0 18px}
 .lead p.l{font-size:19px;opacity:.88;max-width:460px}
 .form{background:var(--paper);color:var(--ink);border-radius:26px;padding:36px;display:grid;gap:18px}
@@ -220,7 +220,7 @@ details p{margin-top:12px;color:var(--soft);max-width:760px}
 @media (max-width:900px){.lead .wrap{grid-template-columns:1fr;gap:36px;padding-top:56px}.form{padding:26px 20px}}
 
 /* footer */
-footer{background:#072A3E;color:rgba(255,255,255,.66);font-size:14px;padding:56px 0 110px}
+footer{background:#302b26;color:rgba(255,255,255,.66);font-size:14px;padding:56px 0 110px}
 footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:32px}
 footer .logo{height:28px;width:auto;aspect-ratio:536.7/102.3;color:#fff;--logo-gold:#F3D9A8}
 footer b{color:#fff}
@@ -229,7 +229,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
 @media (max-width:860px){footer .cols{grid-template-columns:1fr}}
 @media (min-width:861px){footer{padding-bottom:56px}}
 
-.mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;gap:10px;padding:10px;border-radius:20px;background:rgba(11,58,85,.94);backdrop-filter:blur(10px);box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .3s}
+.mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none;gap:10px;padding:10px;border-radius:20px;background:rgba(62,54,44,.94);backdrop-filter:blur(10px);box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .3s}
 .mbar a{flex:1;padding:14px 10px;font-size:15px}
 .mbar .call{background:rgba(255,255,255,.14);color:#fff}
 .mbar.hide{transform:translateY(140%)}
@@ -239,7 +239,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
 <link rel="stylesheet" href="../../cookie-notice.css">
 <script defer src="../../cookie-notice.js"></script>
 </head>
-<body>
+<body data-theme="mariupol">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -266,14 +266,14 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
 
 <main id="top">
 <section class="hero">
-  <img class="hero-img" src="../assets/mariupol-hero.jpg" alt="Жилой квартал и Азовское море на закате" fetchpriority="high">
+  <img class="hero-img" src="../../prototype-src/assets/mr_hero.jpg" alt="Двор и корпуса квартала «Резиденция. Концепт»" fetchpriority="high">
   <div class="wrap">
     <span class="kicker">«Резиденция. Концепт» · Мариуполь, центральный район</span>
     <h1>Ваша квартира у моря&nbsp;— в ипотеку <em>под 2%</em> на весь срок</h1>
     <p class="lede">Личный курорт круглый год: кирпичный дом с закрытым двором в центре Мариуполя, Приморский парк и набережная Азовского моря.</p>
     <div class="ctas">
       <a class="btn btn-sun" href="#lead">Узнать актуальную цену</a>
-      <a class="btn btn-ghost" href="#invest">Рассчитать ипотеку</a>
+      <a class="btn btn-ghost" href="#mortgage-calculator">Рассчитать ипотеку</a>
     </div>
     <div class="chips">
       <div><strong>2%</strong><span>ставка по ипотеке для всех граждан РФ</span></div>
@@ -316,7 +316,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
       <div><span>Срок</span><strong>до 30 лет</strong></div>
       <div><span>Платёж при кредите 6 млн ₽</span><strong>22 177 ₽ в месяц</strong></div>
     </div>
-    <div class="mcalc">
+    <div class="mcalc" id="mortgage-calculator">
       <div>
         <div class="field"><span>Стоимость квартиры</span><div class="val" id="m-p-o"></div><input type="range" id="m-p" min="3" max="12" step="0.1" value="7" aria-label="Стоимость квартиры, млн рублей"></div>
         <div class="field"><span>Первоначальный взнос</span><div class="val" id="m-d-o"></div><input type="range" id="m-d" min="10" max="60" step="1" value="15" aria-label="Первоначальный взнос, процентов"></div>
@@ -362,7 +362,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
       <div><span class="kicker">О доме</span><h2>О доме</h2></div>
       <p>Дом на ул. Зелинского, 23 — один из трёх домов квартала. 128 квартир, 2 подъезда, 9 этажей.</p>
     </div>
-    <div class="about-img"><img src="../assets/mariupol-house.jpg" alt="Фасад дома на ул. Зелинского, 23" loading="lazy"></div>
+    <div class="about-img"><img src="../../prototype-src/assets/mr_house.jpg" alt="Фасад дома на ул. Зелинского, 23" loading="lazy"></div>
     <div class="cards3">
       <article>
         <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="32" height="26" rx="3"/><path d="M4 16h32M13 34V22h14v12"/><circle cx="20" cy="27" r="1.2" fill="currentColor"/></svg>
@@ -471,7 +471,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;line-h
   </div>
 </section>
 
-<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="color:var(--deep);background:var(--bg)"><path fill="currentColor" d="M0 44C160 10 320 10 480 34s320 40 480 18 320-46 480-20V80H0Z"/></svg>
+<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" style="color:var(--sand-panel);background:var(--bg)"><path fill="currentColor" d="M0 44C160 10 320 10 480 34s320 40 480 18 320-46 480-20V80H0Z"/></svg>
 <section class="lead" id="lead">
   <div class="wrap">
     <div>
