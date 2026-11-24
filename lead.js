@@ -1,9 +1,7 @@
 (() => {
-  // FormToMail public form key. Configure the recipient in its dashboard.
-  const apiKey = "QyBcj54FVocDeHPO";
-  const escapeHtml = value => value.replace(/[&<>"']/g, character => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-  })[character]);
+  const feedbackSite = location.hostname === "vector360.test.devnuts.ru"
+    ? "pk_zbidAMMjvy4sKD8b"
+    : "pk_v91K6pDttItY4I5";
 
   function reachGoal(goal) {
     if (goal && typeof window.ym === "function") {
@@ -53,31 +51,27 @@
         return;
       }
 
-      if (!apiKey) {
-        showError("Отправка через форму пока недоступна.", true);
-        return;
-      }
-
       button.disabled = true;
       button.textContent = "Отправляем…";
       try {
         const project = form.dataset.leadProject;
         const purpose = form.dataset.purpose || (emailField ? "Расчёт по лоту" : "Консультация");
-        const contact = emailField ? { "Почта": escapeHtml(emailField.value.trim()), "Пример расчёта": "https://vector-360.ru/files/karluu-example.pdf" } : { "Телефон": escapeHtml(phone) };
-        const response = await fetch("https://api.formtomail.ru/send", {
+        const body = new FormData(form);
+        body.set("site", feedbackSite);
+        body.set("form", "main");
+        body.set("page", location.href);
+        body.set("name", name);
+        body.set("project", project);
+        body.set("message", purpose);
+        body.set("consent_document", form.querySelector("[data-consent-document]").href);
+        if (emailField) body.set("estimate_example", "https://vector-360.ru/files/karluu-example.pdf");
+        const response = await fetch("https://feedback.nuts-agency.ru/api/submit/", {
           method: "POST",
-          headers: {
-            "Authorization": "Bearer " + apiKey,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            title: project + " — " + purpose,
-            body: { "Объект": project, "Запрос": escapeHtml(purpose), "Имя": escapeHtml(name), ...contact, "Согласие": form.querySelector("[data-consent-document]").href },
-            honeypot: fields.namedItem("company_website").value
-          }),
+          body,
           signal: AbortSignal.timeout(12000)
         });
-        if (!response.ok || (await response.json()).statusCode !== 200) {
+        const result = await response.json();
+        if (!response.ok || !result.ok) {
           throw new Error("Form submission failed");
         }
         const message = form.querySelector(".done p");
