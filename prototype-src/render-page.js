@@ -2,7 +2,6 @@
 
 module.exports = function renderPage(key, IMG, VID) {
   const ND="https://xn--80az8a.xn--d1aqf.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B/%D0%BA%D0%B0%D1%82%D0%B0%D0%BB%D0%BE%D0%B3-%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA/%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82/";
-  const fishT = t => `<span class="fish">${t||"рыба"}</span>`;
 
   function mtn(h,c){c=c||["#3E4D46","#55675E","#2F3B36","#24302B"];return `<svg viewBox="0 0 1200 ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FB2AE"/><stop offset="1" stop-color="#5E726C"/></linearGradient></defs><rect width="1200" height="${h}" fill="url(#sky)"/><path d="M0 ${h} L0 ${h*.55} L220 ${h*.25} L380 ${h*.5} L620 ${h*.12} L820 ${h*.45} L1000 ${h*.28} L1200 ${h*.5} L1200 ${h}Z" fill="${c[1]}"/><path d="M620 ${h*.12} L660 ${h*.2} L620 ${h*.18} L585 ${h*.2}Z" fill="#E9EEEC"/><path d="M0 ${h} L0 ${h*.72} L260 ${h*.55} L480 ${h*.75} L720 ${h*.58} L960 ${h*.74} L1200 ${h*.62} L1200 ${h}Z" fill="${c[0]}"/><path d="M0 ${h} L0 ${h*.88} Q600 ${h*.78} 1200 ${h*.9} L1200 ${h}Z" fill="${c[3]}"/></svg>`;}
   function city(h){return `<svg viewBox="0 0 1200 ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="1200" height="${h}" fill="#2B5A78"/><rect x="560" y="${h*.22}" width="120" height="${h}" fill="#3F7090"/><rect x="700" y="${h*.08}" width="140" height="${h}" fill="#4F82A3"/><rect x="860" y="${h*.3}" width="110" height="${h}" fill="#3F7090"/><rect x="990" y="${h*.16}" width="150" height="${h}" fill="#5D8FAE"/><g fill="#E0A526" opacity=".85"><rect x="730" y="${h*.2}" width="16" height="16"/><rect x="770" y="${h*.32}" width="16" height="16"/><rect x="1020" y="${h*.3}" width="16" height="16"/><rect x="1060" y="${h*.42}" width="16" height="16"/><rect x="590" y="${h*.4}" width="16" height="16"/></g><path d="M0 ${h*.84} Q300 ${h*.78} 600 ${h*.84} T1200 ${h*.84} V${h} H0Z" fill="#6C9BB8"/><path d="M0 ${h*.92} Q300 ${h*.87} 600 ${h*.92} T1200 ${h*.92} V${h} H0Z" fill="#86AFC8"/></svg>`;}
@@ -23,9 +22,7 @@ module.exports = function renderPage(key, IMG, VID) {
     kpiSrc:"Данные застройщика и управляющей компании UTROM. Прогноз, кроме условий программы «Старт».",
     hero:()=>`<img fetchpriority="high" src="${IMG.k_facade}" alt="Фасад корпуса апартаментов с деревянной отделкой и балконами">`, thumb:()=>`<img loading="lazy" src="${IMG.k_yard}" alt="">`,
     dev:"«Мой Дом»", decl:ND+"64362",
-    invest:{intro:"Пример расчёта из презентации застройщика: апартамент 31,52 м² в программе «Партнёрство». Расчёт по актуальному лоту под ваш бюджет подготовит менеджер на консультации.",
-     cards:[{t:"Апартамент 31,52 м²",p:"14 676 170 ₽",n:"Цена на начало 2026 года, первый взнос 40%. Актуальную цену уточнит менеджер",rows:[["Загрузка в расчёте","62%"],["Чистый доход инвестора в первый год","1 848 331 ₽",1],["Чистый доход на седьмой год","2 509 067 ₽"],["Окупаемость","7 лет"],["Прогноз роста стоимости","15–20% в год"],["Прогноз стоимости в 2030 году","25 683 298 ₽",1]]}],
-     chart:{title:"Прогноз стоимости апартамента 31,52 м²",data:[["2026",14676170],["2027",16877596],["2028",19372544],["2029",22307778],["2030",25683298]]},
+    invest:{intro:"Индивидуальный расчёт по актуальному лоту подготовит менеджер.",
      region:{num:"×2,3",title:"Туристов на Алтае стало в 2,3 раза больше",text:"2,8 млн туристов в 2025 году против примерно 1,2 млн в 2020-м. Алтай всё чаще выбирают для отдыха, а больше туристов — больше спрос на размещение.",
       rowsTitle:"Сезон — 12 месяцев в году",rows:[["Зима","горные лыжи: Манжерок, Белокуриха"],["Лето","Катунь, горы, озёра"],["Круглый год","санатории Белокурихи"]],
       note:"Спрос на отдых не заканчивается с зимой. Турпоток Республики Алтай — по данным «Известий», 4 августа 2026 года."}},
@@ -75,15 +72,11 @@ module.exports = function renderPage(key, IMG, VID) {
     return `<section class="section" style="padding-bottom:0"><div class="wrap"><div class="head"><h2>Для кого проект</h2></div><div class="grid4">${o.who.map(w=>`<div class="who"><p>${w}</p></div>`).join("")}</div></div></section>`;}
   function investHTML(o){ const v=o.invest; if(!v) return "";
     let body="";
-    if(v.cards) body+=`<div class="${v.cards.length>1?"grid2":"grid2"}">${v.cards.map(c=>`<div class="calc-card"><div class="top"><span>${c.t}</span><strong>${c.p}</strong><em>${c.n}</em></div><div class="rows">${c.rows.map(r=>`<div class="${r[2]?"big":""}"><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}</div></div>`).join("")}
-      ${v.chart?chartHTML(v.chart):""}</div>`;
     if(v.facts) body+=`<div class="grid4">${v.facts.map(f=>`<div class="card"><h3 style="font-size:30px">${f[0]}</h3><p>${f[1]}</p></div>`).join("")}</div>`;
     if(v.region){const g=v.region; body+=`<div class="card region"><div><div class="rnum">${g.num}</div><h3>${g.title}</h3><p>${g.text}</p></div>
      <div class="rows"><h3 style="margin:6px 0 4px">${g.rowsTitle}</h3>${g.rows.map(r=>`<div><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}<p class="disc" style="margin-top:10px">${g.note}</p></div></div>`;}
     return `<section class="section" id="invest"><div class="wrap"><div class="head"><h2>Инвестиционные показатели</h2><p>${v.intro}</p></div>${body}
      <p class="disc">Расчёты и прогнозы предоставлены застройщиком и управляющей компанией. Фактический доход зависит от загрузки, расходов и рынка и не гарантируется.</p></div></section>`;}
-  function chartHTML(c){const max=Math.max(...c.data.map(d=>d[1]));
-    return `<div class="card"><h3>${c.title}</h3><p>Сценарий роста по данным застройщика</p><div class="bars">${c.data.map((d,i)=>`<div class="bar ${i===c.data.length-1?"last":""}"><b>${(d[1]/1e6).toLocaleString("ru-RU",{maximumFractionDigits:1})} млн</b><i style="height:${Math.round(d[1]/max*170)}px"></i><span>${d[0]}</span></div>`).join("")}</div></div>`;}
   function manageHTML(o){const m=o.manage; if(!m) return "";
     let body = m.items?`<div class="grid3">${m.items.map(i=>`<div class="card"><h3>${i[0]}</h3><p>${i[1]}</p></div>`).join("")}</div>`:"";
     if(m.table) body+=`<div class="table-wrap"><table><thead><tr>${m.table[0].map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${m.table.slice(1).map(r=>`<tr>${r.map((c,i)=>i?`<td>${c}</td>`:`<td><b>${c}</b></td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
@@ -92,7 +85,7 @@ module.exports = function renderPage(key, IMG, VID) {
     const t=o.terms;
     return `<section class="section" id="terms" style="padding-top:0"><div class="wrap"><div class="terms"><div><h2>Условия покупки</h2><p>${t.intro}</p><ul class="tlist">${t.list.map(x=>`<li>${x}</li>`).join("")}</ul></div><a class="btn btn-main" href="#lead">Подобрать условия</a></div>
     <p class="disc">${t.note}</p>
-    ${o.offer?`<div class="offer"><div><span class="tag">Предложение октября</span><h3>${o.offer.title}</h3><p>${o.offer.text}</p></div><a class="btn btn-line" href="#lead">Узнать подробнее</a></div>`:""}</div></section>`;}
+    </div></section>`;}
   function mortgageHTML(o){ if(o.region!=="n") return "";
     return `<section class="section dark-sec" id="invest"><div class="wrap">
      <div class="head"><h2>Море рядом. Ставка — всего 2%</h2><p>Забудьте о высоких процентах: ипотека 2% по госпрограмме доступна всем гражданам России для новостроек на новых территориях. Ипотеку оформляем в Сбербанке и ВТБ. С одобрением поможет наш ипотечный брокер.</p></div>
@@ -168,16 +161,16 @@ module.exports = function renderPage(key, IMG, VID) {
     const n=o.region==="n";
     return `<section class="section lead" id="lead"><div class="wrap lead-box"><div>
      <h2>${n?"Узнать подробнее":"Получите расчёт по лоту"}</h2>
-     ${n?`<p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>`:`<p class="l">Оставьте почту для индивидуального расчёта. После заявки можно скачать пример для апартамента 31,52 м².</p>
+     ${n?`<p class="l">Оставьте свои контактные данные, и наш менеджер свяжется с вами в ближайшее время.</p>`:`<p class="l">Оставьте почту для индивидуального расчёта.</p>
      `}</div>
      <form class="form" data-lead-project="${o.name}"${n?"":' data-submit-goal="estimate_inline_submit"'} method="post" novalidate><div class="fields">
        <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
-       ${n?'<label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" placeholder="+7" maxlength="32" required></label>':'<label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>'}
+       ${n?'<label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" value="+7" inputmode="numeric" required></label>':'<label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>'}
        <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a data-consent-document href="/files/${n?"consent-viewing":"consent-estimate"}.pdf" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/files/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
        <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
        <p class="err" role="alert" hidden></p>
        <button class="btn" type="submit" disabled>${n?"Отправить заявку":"Запросить расчёт на почту"}</button></div>
-       <div class="done" role="status" tabindex="-1"><h3>Заявка отправлена</h3><p style="margin-top:8px;color:var(--soft)">Перезвоним в течение 10 минут в рабочее время.</p></div>
+       <div class="done" role="status" tabindex="-1"><h3>Заявка отправлена</h3><p style="margin-top:8px;color:var(--soft)">Менеджер свяжется с вами.</p></div>
      </form></div></section>`;}
 
   function othersHTML(id){

@@ -17,11 +17,53 @@
     if (event.target.closest?.('a[href^="tel:"]')) reachGoal("phone_click");
   });
 
+  function formatPhone(value) {
+    const digits = value.replace(/\D/g, "");
+    const hasPrefix = value.startsWith("+7") || (digits.length === 11 && /^[78]/.test(digits));
+    const number = (hasPrefix ? digits.slice(1) : digits).slice(0, 10);
+    const groups = [number.slice(0, 3), number.slice(3, 6), number.slice(6, 8), number.slice(8)];
+    return ["+7", ...groups.filter(Boolean)].join(" ");
+  }
+
   function bindForm(form, submitGoal) {
     const button = form.querySelector("button[type=submit]");
     const error = form.querySelector(".err");
     const buttonText = button.textContent;
+    const fields = form.elements;
+    const nameField = fields.namedItem("name");
+    const phoneField = fields.namedItem("phone");
+    const emailField = fields.namedItem("email");
+    const consentField = fields.namedItem("consent");
+    if (phoneField) {
+      phoneField.defaultValue = "+7";
+      phoneField.value = "+7";
+      phoneField.inputMode = "numeric";
+      phoneField.addEventListener("beforeinput", event => {
+        if (phoneField.selectionStart === 0 && phoneField.selectionEnd === phoneField.value.length) return;
+        if (event.inputType === "deleteContentBackward" && phoneField.selectionEnd <= 2) {
+          event.preventDefault();
+        }
+        if (phoneField.selectionStart < 2) {
+          phoneField.setSelectionRange(2, Math.max(2, phoneField.selectionEnd));
+        }
+      });
+      phoneField.addEventListener("input", () => {
+        const raw = phoneField.value;
+        const caret = phoneField.selectionStart;
+        const formatted = formatPhone(raw);
+        if (formatted === raw) return;
+        phoneField.value = formatted;
+        const position = caret === raw.length ? formatted.length : formatPhone(raw.slice(0, caret)).length;
+        phoneField.setSelectionRange(position, position);
+      });
+    }
     button.disabled = false;
+
+    form.addEventListener("input", event => {
+      if (event.target.getAttribute("aria-invalid") !== "true") return;
+      event.target.removeAttribute("aria-invalid");
+      error.hidden = true;
+    });
 
     function showError(message, withPhone = false) {
       error.textContent = message;
@@ -34,22 +76,30 @@
       error.hidden = false;
     }
 
+    function invalid(field, message) {
+      field.setAttribute("aria-invalid", "true");
+      showError(message);
+      field.focus();
+    }
+
     form.addEventListener("submit", async event => {
       event.preventDefault();
       if (button.disabled || form.classList.contains("sent")) return;
       error.hidden = true;
 
-      const fields = form.elements;
-      const name = fields.namedItem("name").value.trim();
-      const phone = fields.namedItem("phone")?.value.trim() || "";
-      const emailField = fields.namedItem("email");
-      const phoneDigits = phone.replace(/\D/g, "").length;
-      const validContact = emailField ? emailField.validity.valid :
-        /^[+\d\s().-]+$/.test(phone) && phoneDigits >= 10 && phoneDigits <= 15 && phone.length <= 32;
-      if (name.length < 2 || name.length > 120 || !validContact || !fields.namedItem("consent").checked) {
-        showError("Укажите имя, " + (emailField ? "электронную почту" : "номер телефона") + " и подтвердите согласие.");
-        return;
+      const name = nameField.value.trim();
+      if (name.length < 2 || name.length > 120 || !/^[\p{L}\p{M}]+(?:[ .’'\p{Pd}]+[\p{L}\p{M}]+)*\.?$/u.test(name)) {
+        return invalid(nameField, "Введите имя буквами, от 2 до 120 символов.");
       }
+      const email = emailField?.value.trim();
+      if (emailField && (!emailField.validity.valid || email.length > 254 || !/@[^@]+\.[^@.]+$/.test(email))) {
+        return invalid(emailField, "Введите действующий адрес электронной почты.");
+      }
+      const phone = phoneField?.value.replace(/\D/g, "");
+      if (phoneField && !/^7[0-9]{10}$/.test(phone)) {
+        return invalid(phoneField, "Введите 10 цифр номера после +7.");
+      }
+      if (!consentField.checked) return invalid(consentField, "Подтвердите согласие на обработку персональных данных.");
 
       button.disabled = true;
       button.textContent = "Отправляем…";
@@ -61,10 +111,11 @@
         body.set("form", "main");
         body.set("page", location.href);
         body.set("name", name);
+        if (phoneField) body.set("phone", "+" + phone);
+        if (emailField) body.set("email", email);
         body.set("project", project);
         body.set("message", purpose);
         body.set("consent_document", form.querySelector("[data-consent-document]").href);
-        if (emailField) body.set("estimate_example", "https://vector-360.ru/files/karluu-example.pdf");
         const response = await fetch("https://feedback.nuts-agency.ru/api/submit/", {
           method: "POST",
           body,
@@ -75,16 +126,9 @@
           throw new Error("Form submission failed");
         }
         const message = form.querySelector(".done p");
-        if (emailField) {
-          message.textContent = "Менеджер подготовит индивидуальный расчёт и пришлёт его на указанную почту. ";
-          const download = document.createElement("a");
-          download.href = "/files/karluu-example.pdf";
-          download.download = "karluu-example.pdf";
-          download.textContent = "Скачать пример расчёта (PDF)";
-          message.append(download);
-        } else {
-          message.textContent = "Менеджер свяжется с вами по указанному телефону.";
-        }
+        message.textContent = emailField
+          ? "Менеджер подготовит индивидуальный расчёт и пришлёт его на указанную почту."
+          : "Менеджер свяжется с вами по указанному телефону.";
         form.reset();
         form.classList.add("sent");
         reachGoal(submitGoal);
@@ -151,8 +195,7 @@
         email.type = "tel";
         email.name = "phone";
         email.autocomplete = "tel";
-        email.placeholder = "+7";
-        email.maxLength = 32;
+        email.removeAttribute("maxlength");
         email.closest("label").querySelector("span").textContent = "Телефон";
         form.querySelector("[data-consent-document]").href = "/files/consent-viewing.pdf";
       }
