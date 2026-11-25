@@ -147,10 +147,11 @@
   const template = original.cloneNode(true);
   bindForm(original, original.dataset.submitGoal);
 
-  document.querySelectorAll(".plan-link").forEach(link => {
+  document.querySelectorAll(".plan-link, .photo-link").forEach(link => {
     const viewer = document.createElement("dialog");
     viewer.className = "plan-dialog";
-    const caption = link.textContent.includes("генплан") ? "Генплан комплекса" : "Карта расположения";
+    const caption = link.dataset.imageCaption ||
+      (link.textContent.includes("генплан") ? "Генплан комплекса" : "Карта расположения");
     viewer.setAttribute("aria-label", caption);
     viewer.innerHTML = '<form method="dialog"><button aria-label="Закрыть">Закрыть</button></form><img><a target="_blank" rel="noopener">Открыть в полном размере</a>';
     const image = viewer.querySelector("img");
