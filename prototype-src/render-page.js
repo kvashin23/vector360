@@ -83,7 +83,7 @@ module.exports = function renderPage(key, IMG, VID) {
     return `<section class="section" id="manage" style="padding-top:0"><div class="wrap"><div class="head"><h2>${m.title}</h2><p>${m.text}</p></div>${body}</div></section>`;}
   function termsHTML(o){ if(o.region==="n") return "";
     const t=o.terms;
-    return `<section class="section" id="terms" style="padding-top:0"><div class="wrap"><div class="terms"><div><h2>Условия покупки</h2><p>${t.intro}</p><ul class="tlist">${t.list.map(x=>`<li>${x}</li>`).join("")}</ul></div><a class="btn btn-main" href="#lead">Подобрать условия</a></div>
+    return `<section class="section" id="terms" style="padding-top:0"><div class="wrap"><div class="terms"><div><h2>Условия покупки</h2><p>${t.intro}</p><a class="btn btn-main" href="#lead">Подобрать условия</a></div><ul class="tlist">${t.list.map(x=>`<li>${x}</li>`).join("")}</ul></div>
     <p class="disc">${t.note}</p>
     </div></section>`;}
   function mortgageHTML(o){ if(o.region!=="n") return "";
@@ -125,7 +125,8 @@ module.exports = function renderPage(key, IMG, VID) {
     <div class="grid4"><div class="card"><h3 style="font-size:28px">25 млрд ₽</h3><p>инвестиций в кластер</p></div><div class="card"><h3 style="font-size:28px">10 000</h3><p>подростков в год примет круглогодичный лагерь</p></div><div class="card"><h3 style="font-size:28px">120 тыс. м²</h3><p>жилья для сотрудников туристической отрасли</p></div><div class="card"><h3 style="font-size:28px">550 и 330</h3><p>мест в новой школе и детском саду</p></div></div>
     <p class="disc">По данным презентации проекта «Крепче стали».</p></div></section>`;}
   function locHTML(o){ const l=o.loc; if(!l) return "";
-    return `<section class="section" id="loc" style="padding-top:0"><div class="wrap"><div class="head"><h2>Расположение</h2></div><div class="loc"><a class="plan-link" href="${o.region==="n"?IMG[l.img]:"/design/assets/karluu-plan.jpg"}" target="_blank" rel="noopener"><img loading="lazy" src="${IMG[l.img]}" alt="Расположение объекта"><span>${o.region==="n"?"Увеличить карту":"Увеличить генплан"}</span></a><ul>${l.items.map(i=>`<li><span>${i[0]}</span><b>${i[1]}</b></li>`).join("")}</ul></div></div></section>`;}
+    const plan = o.region === "n" ? IMG[l.img] : IMG[l.img].replace(/prototype-src\/assets\/[^/]+$/, "design/assets/karluu-plan.jpg");
+    return `<section class="section" id="loc" style="padding-top:0"><div class="wrap"><div class="head"><h2>Расположение</h2></div><div class="loc"><a class="plan-link" href="${plan}" target="_blank" rel="noopener"><img loading="lazy" src="${plan}" alt="${o.region==="n"?"Расположение объекта":"Генплан комплекса Карлуу"}"><span>${o.region==="n"?"Увеличить карту":"Увеличить генплан"}</span></a><ul>${l.items.map(i=>`<li><span>${i[0]}</span><b>${i[1]}</b></li>`).join("")}</ul></div></div></section>`;}
   function statsHTML(o){const k=o.stats; if(!k) return "";
     return `<section class="section" id="stock"><div class="wrap"><div class="head"><h2>${k.title}</h2><p>${k.text}</p></div>
     <div class="nums">${k.nums.map(n=>`<div><strong>${n[0]}</strong><span>${n[1]}</span></div>`).join("")}</div>
@@ -133,7 +134,7 @@ module.exports = function renderPage(key, IMG, VID) {
     <a class="btn btn-main" href="#lead" style="margin-top:28px">Подобрать апартамент</a></div></section>`;}
   function infraHTML(o){const f=o.infra; if(!f) return "";
     return `<section class="section" id="infra" style="padding-top:0"><div class="wrap"><div class="head"><h2>${f.title}</h2><p>${f.text}</p></div>
-    <div class="grid4 infra">${f.items.map(i=>`<figure><img loading="lazy" src="${IMG[i[0]]}" alt="${i[1]}"><figcaption>${i[1]}</figcaption></figure>`).join("")}</div>
+    <div class="grid4 infra">${f.items.map(i=>`<figure><a class="photo-link" href="${IMG[i[0]]}" target="_blank" rel="noopener" data-image-caption="${i[1]}" aria-label="Увеличить фото: ${i[1]}"><img loading="lazy" src="${IMG[i[0]]}" alt=""></a><figcaption>${i[1]}</figcaption></figure>`).join("")}</div>
     <p class="disc">${f.note}</p></div></section>`;}
   function videoHTML(o){
     if(o.promo){const p=o.promo;

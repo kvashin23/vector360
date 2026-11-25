@@ -46,3 +46,77 @@ body[data-theme="mariupol"] .steps li::before {
 @media (max-width:600px) {
   [data-theme="mariupol"] .steps {grid-template-columns:1fr}
 }
+
+[data-theme="karluu"] .hero .lede {max-width:min(760px,100%)}
+[data-theme="karluu"] .nums {
+  gap:12px;
+  border:0;
+  margin-bottom:28px;
+}
+[data-theme="karluu"] .nums > div,
+[data-theme="karluu"] .steps > li {
+  background:var(--paper,#fff);
+  border:1px solid var(--line,#ccd2de);
+  border-top:3px solid #ae9468;
+  border-radius:16px;
+  padding:clamp(14px,2vw,24px);
+  min-width:0;
+}
+[data-theme="karluu"] .nums strong {font-size:clamp(23px,3.2vw,44px)}
+[data-theme="karluu"] .infra figure {position:relative}
+.photo-link {display:block;height:100%;cursor:zoom-in}
+.photo-link::after {content:"";position:absolute;inset:0;border-radius:var(--r)}
+.photo-link:focus-visible::after {outline:3px solid #ae9468;outline-offset:-4px}
+[data-theme="karluu"] .infra figcaption {pointer-events:none}
+[data-theme="karluu"] :is(#manage,#how) .head p {max-width:72ch}
+[data-theme="karluu"] .terms {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.55fr);
+  align-items:center;
+  gap:clamp(20px,4vw,48px);
+  padding:clamp(22px,4vw,48px);
+  background:#1f3466;
+  color:#fff;
+}
+[data-theme="karluu"] .terms > div > p {color:#e3e8f3}
+[data-theme="karluu"] .terms .kicker {color:#efca87}
+[data-theme="karluu"] .terms .btn {margin-top:20px}
+[data-theme="karluu"] .terms .tlist {list-style:none;margin:0;padding:0;display:grid;gap:8px}
+[data-theme="karluu"] .terms .tlist li {
+  position:relative;
+  border:0;
+  border-radius:10px;
+  padding:10px 14px 10px 35px;
+  background:#ffffff14;
+}
+[data-theme="karluu"] .terms .tlist li::before {
+  content:"";
+  position:absolute;
+  left:16px;
+  top:1.1em;
+  width:8px;
+  height:8px;
+  margin:0;
+  transform:none;
+  border-radius:50%;
+  background:#efca87;
+}
+[data-theme="karluu"] #loc .loc {grid-template-columns:minmax(0,1fr);gap:20px}
+[data-theme="karluu"] #loc .plan-link img {width:100%;max-height:none;aspect-ratio:auto;object-fit:contain}
+[data-theme="karluu"] .steps {gap:16px;border:0}
+[data-theme="karluu"] .steps li::before {
+  display:inline-grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#e8edf7;
+  color:#1f3466;
+  font-size:20px;
+}
+@media (max-width:900px) {
+  [data-theme="karluu"] .terms {grid-template-columns:1fr}
+}
+@media (max-width:560px) {
+  [data-theme="karluu"] .steps {grid-template-columns:1fr}
+}
