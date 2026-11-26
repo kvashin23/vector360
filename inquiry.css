@@ -120,3 +120,29 @@ body[data-theme="mariupol"] .steps li::before {
 @media (max-width:560px) {
   [data-theme="karluu"] .steps {grid-template-columns:1fr}
 }
+
+/* Таблица программ UTROM на телефоне: вместо горизонтальной прокрутки — карточки по строкам */
+@media (max-width:600px) {
+  #manage table {min-width:0}
+  #manage thead {display:none}
+  #manage tr {display:block;padding:14px 16px;border-bottom:1px solid var(--line,#ccd2de)}
+  #manage tr:last-child {border-bottom:0}
+  #manage td {display:block;padding:4px 0;border:0}
+  #manage td:first-child {padding-bottom:6px}
+  #manage td:nth-child(2)::before {content:"«Партнёрство»";display:block;font-size:13px;color:var(--soft,#55607a)}
+  #manage td:nth-child(3)::before {content:"«Старт»";display:block;font-size:13px;color:var(--soft,#55607a);margin-top:6px}
+}
+
+/* Планировки на телефоне: цена и кнопка «Узнать цену» видны без прокрутки вбок */
+@media (max-width:600px) {
+  #layouts table {min-width:0}
+  #layouts thead {display:none}
+  #layouts tr {display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;padding:16px;border-bottom:1px solid var(--line,#dcd3c5)}
+  #layouts tr:last-child {border-bottom:0}
+  #layouts td {display:block;padding:0;border:0}
+  #layouts td:first-child, #layouts td:last-child {grid-column:1 / -1}
+  #layouts td:nth-child(2)::before {content:"Площадь";display:block;font-size:13px;color:var(--soft,#625a51)}
+  #layouts td:nth-child(3)::before {content:"Кухня";display:block;font-size:13px;color:var(--soft,#625a51)}
+  #layouts td:nth-child(4) {display:none}
+  #layouts td:last-child {margin-top:8px}
+}

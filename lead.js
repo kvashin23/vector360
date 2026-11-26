@@ -115,7 +115,7 @@
         if (emailField) body.set("email", email);
         body.set("project", project);
         body.set("message", purpose);
-        body.set("consent_document", form.querySelector("[data-consent-document]").href);
+        body.set("consent_document", [...form.querySelectorAll("[data-consent-document]")].map(link => link.href).join(" "));
         const response = await fetch("https://feedback.nuts-agency.ru/api/submit/", {
           method: "POST",
           body,
@@ -193,11 +193,9 @@
       form.dataset.purpose = purpose;
       const email = form.elements.namedItem("email");
       if (email && !isEstimate) {
-        email.type = "tel";
-        email.name = "phone";
-        email.autocomplete = "tel";
-        email.removeAttribute("maxlength");
-        email.closest("label").querySelector("span").textContent = "Телефон";
+        // Show and call requests only need a phone: drop the e-mail field and its consent.
+        email.closest("label").remove();
+        form.querySelector("[data-consent-email]")?.remove();
         form.querySelector("[data-consent-document]").href = "/files/consent-viewing.pdf";
       }
       form.querySelector("button[type=submit]").textContent = isEstimate ? "Запросить расчёт на почту" : "Отправить заявку";
