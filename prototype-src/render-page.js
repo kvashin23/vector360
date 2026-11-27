@@ -167,7 +167,7 @@ module.exports = function renderPage(key, IMG, VID) {
      <form class="form" data-lead-project="${o.name}"${n?"":' data-submit-goal="estimate_inline_submit"'} method="post" novalidate><div class="fields">
        <label><span>Имя</span><input type="text" name="name" autocomplete="name" maxlength="120" required></label>
        <label><span>Телефон</span><input type="tel" name="phone" autocomplete="tel" value="+7" inputmode="numeric" required></label>${n?"":'<label><span>Электронная почта</span><input type="email" name="email" autocomplete="email" maxlength="254" required></label>'}
-       <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a data-consent-document href="/files/consent-viewing.pdf" target="_blank" rel="noopener">согласие на обработку персональных данных</a>${n?"":'<span data-consent-email> и <a data-consent-document href="/files/consent-estimate.pdf" target="_blank" rel="noopener">согласие на получение расчёта по почте</a></span>'}. <a href="/files/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
+       <label class="consent"><input type="checkbox" name="consent" required> <span>Даю <a data-consent-document href="/files/${n?"consent-viewing":"consent-estimate"}.pdf" target="_blank" rel="noopener">согласие на обработку персональных данных</a>. <a href="/files/privacy-policy.pdf" target="_blank" rel="noopener">Политика конфиденциальности</a>.</span></label>
        <input type="text" name="company_website" autocomplete="off" tabindex="-1" hidden>
        <p class="err" role="alert" hidden></p>
        <button class="btn" type="submit" disabled>${n?"Отправить заявку":"Запросить расчёт на почту"}</button></div>
